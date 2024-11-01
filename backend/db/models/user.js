@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
         onDelete: "CASCADE",
       });
+      User.hasMany(models.Booking, {
+        foreignKey:"userId",
+        as: "bookings"
+      })
     }
   }
 
