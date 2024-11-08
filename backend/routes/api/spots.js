@@ -5,6 +5,7 @@ const { requireAuth } = require("../../utils/auth");
 const { validationResult } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Op } = require("sequelize");
+const sequelize = require("sequelize");
 
 const {
   User,
@@ -576,59 +577,35 @@ router.get("/", queryValidationRules, async (req, res) => {
   }
 
   const test = {};
-  if (maxLat || minLat) {
-    if (!isNaN(parseFloat(maxLat)) && maxLat >= -90 && maxLat <= 90) {
-      test.maxLat = { [Op.lte]: maxLat };
-    }
+  if (minLat) test.lat = { [Op.gte]: parseFloat(minLat) };
+  if (maxLat) test.lat = { ...test.lat, [Op.lte]: parseFloat(maxLat) };
+  if (minLng) test.lng = { [Op.gte]: parseFloat(minLng) };
+  if (maxLng) test.lng = { ...test.lng, [Op.lte]: parseFloat(maxLng) };
+  if (minPrice) test.price = { [Op.gte]: parseFloat(minPrice) };
+  if (maxPrice) test.price = { ...test.price, [Op.lte]: parseFloat(maxPrice) };
 
-    if (!isNaN(parseFloat(minLat)) && minLat >= -90 && minLat <= 90) {
-      test.minLat = { [Op.gte]: minLat };
-    }
-
-    if (maxLng || minLng) {
-      if (!isNaN(parseFloat(maxLng)) && maxLng >= -180 && minLng <= 180) {
-        test.maxLng = { [Op.lte]: maxLng };
-      }
-
-      if (!isNaN(parseFloat(minLng)) && minLng >= -180 && minLng <= 180) {
-        test.minLng = { [Op.gte]: minLng };
-      }
-
-      if (maxPrice || minPrice) {
-        if (!isNaN(parseFloat(maxPrice)) && maxPrice >= 0) {
-          test.maxPrice = { [Op.gte]: maxPrice };
-        }
-        if (!isNaN(parseFloat(minPrice)) && minPrice >= 0) {
-          test.minPrice = { [Op.lte]: minPrice };
-        }
-      }
-    }
-  }
   try {
     const spots = await Spot.findAll({
       where: test,
+      attributes: {
+        include: [
+          [
+            sequelize.literal(`(
+              SELECT AVG("stars")
+              FROM "Reviews"
+              WHERE "Reviews"."spotId" = "Spot"."id"
+            )`),
+            "avgRating",
+          ],
+        ],
+      },
       ...pagination,
     });
-    const spotsWithReviews = await Promise.all(
-      spots.map(async (spot) => {
-        const reviews = await Review.findAll({
-          where: { spotId: spot.id },
-          attributes: ["stars"],
-        });
 
-        // calculate the avg of staring for a spot
-        const sumStars = await reviews.reduce(
-          (sum, review) => sum + review.dataValues.stars,
-          0
-        );
-        const avgRating = sumStars / reviews.length;
-
-        return {
-          ...spot.dataValues,
-          avgRating,
-        };
-      })
-    );
+    const spotsWithReviews = spots.map((spot) => ({
+      ...spot.dataValues,
+      avgRating: parseFloat(spot.dataValues.avgRating) || 0, // Handle cases where there are no reviews
+    }));
 
     return res.json({
       Spots: spotsWithReviews,
