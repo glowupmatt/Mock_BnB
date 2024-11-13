@@ -11,7 +11,6 @@ function Layout() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
       setIsLoaded(true);
-      console.log("USE EFFECT");
     });
   }, [dispatch]);
 
