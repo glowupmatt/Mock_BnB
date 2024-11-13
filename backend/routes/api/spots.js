@@ -615,7 +615,7 @@ router.get("/", queryValidationRules, async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500);
-    return res.json({ error: "An error occured while fetching spots" });
+    return res.json({ error: "An error occurred while fetching spots" });
   }
 });
 
