@@ -1,6 +1,9 @@
+.profile-button {
+  position: relative;
+}
+
 .profile-dropdown {
-  position: absolute;
-  background-color: white;
+  background-color: rgb(150, 142, 142);
   border: 1px solid #ccc;
   list-style: none;
   padding: 10px;
