@@ -1,0 +1,12 @@
+.profile-dropdown {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
