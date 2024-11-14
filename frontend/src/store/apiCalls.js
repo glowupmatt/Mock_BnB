@@ -19,7 +19,7 @@ const fetchDataFailure = (error) => ({
 export const fetchData = () => async (dispatch) => {
   dispatch(fetchDataRequest());
   try {
-    const response = await fetch(import.meta.env.VITE_DEVELOPMENT_URL);
+    const response = await fetch("/api/spots");
     const data = await response.json();
     dispatch(fetchDataSuccess(data));
   } catch (error) {
