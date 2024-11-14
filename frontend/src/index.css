@@ -1,1 +1,18 @@
-/* TODO: Add sitewide styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  min-width: 100vw;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.app-display {
+  max-width: 2560px;
+  width: 100%;
+}
