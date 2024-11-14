@@ -21,4 +21,15 @@
 #modal-content {
   position: absolute;
   background-color: white;
+  width: 17rem;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  #modal-content {
+    width: 70vw;
+    height: 70vh;
+  }
 }
