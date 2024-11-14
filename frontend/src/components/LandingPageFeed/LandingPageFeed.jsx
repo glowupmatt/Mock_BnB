@@ -13,7 +13,6 @@ function LandingPageFeed() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   const spots = data?.Spots || [];
-  console.log(spots);
   return (
     <div>
       <ul>

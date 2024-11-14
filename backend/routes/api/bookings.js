@@ -96,7 +96,6 @@ router.delete("/:bookingId", async (req, res) => {
 
 router.get("/", async (req, res) => {
   const { user } = req;
-  console.log(user);
   if (user) {
     const bookings = await Booking.findAll({
       where: {
