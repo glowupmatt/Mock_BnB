@@ -12,11 +12,11 @@
 
 .user-icon {
   transition: color 0.2s ease;
-  color: rgb(109, 99, 99); /* Change to your desired color */
+  color: rgb(109, 99, 99);
 }
 
 .user-icon:hover {
-  color: rgb(226, 87, 87); /* Change to your desired hover color */
+  color: rgb(226, 87, 87);
 }
 
 .dropdown-container {
@@ -49,9 +49,50 @@
   padding: 10px;
   margin: 0;
   transition: opacity 0.1s ease;
+  -webkit-box-shadow: 2px 3px 65px -18px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 3px 65px -18px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 3px 65px -18px rgba(0, 0, 0, 0.75);
 }
 
 .hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.profile-logout-button {
+  background: rgb(226, 87, 87);
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.profile-logout-button:hover {
+  background: rgb(231, 186, 186);
+  color: black;
+}
+
+.modal-menu-item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.guest-login-button {
+  background: rgb(226, 87, 87);
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.guest-login-button:hover {
+  background: rgb(231, 186, 186);
+  color: black;
 }
