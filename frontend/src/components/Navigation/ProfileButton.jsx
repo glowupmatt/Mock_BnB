@@ -39,6 +39,13 @@ function ProfileButton({ user }) {
     closeMenu();
   };
 
+  const loginWithGuest = () => {
+    dispatch(
+      sessionActions.login({ credential: "guest", password: "guest1234" })
+    );
+    closeMenu();
+  };
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
@@ -56,21 +63,33 @@ function ProfileButton({ user }) {
               </li>
               <li>{user.email}</li>
               <li>
-                <button onClick={logout}>Log Out</button>
+                <button className="profile-logout-button" onClick={logout}>
+                  Log Out
+                </button>
               </li>
             </>
           ) : (
             <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
+              <div className="modal-menu-item-container">
+                <OpenModalMenuItem
+                  itemText="Log In"
+                  onItemClick={closeMenu}
+                  modalComponent={<LoginFormModal />}
+                />
+                <OpenModalMenuItem
+                  itemText="Sign Up"
+                  onItemClick={closeMenu}
+                  modalComponent={<SignupFormModal />}
+                />
+                <div>
+                  <button
+                    onClick={() => loginWithGuest()}
+                    className="guest-login-button"
+                  >
+                    Log in with guest
+                  </button>
+                </div>
+              </div>
             </>
           )}
         </ul>
