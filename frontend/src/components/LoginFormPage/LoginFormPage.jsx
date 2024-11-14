@@ -39,7 +39,7 @@ function LoginFormPage() {
             />
           </label>
         </div>
-        <div className="login-form-username-login">
+        <div>
           <label>
             Password
             <input
