@@ -27,6 +27,7 @@
     "express-validator": "^7.2.0",
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
+    "mock_bnb": "file:..",
     "morgan": "^1.10.0",
     "per-env": "^1.0.2",
     "pg": "^8.13.1",
