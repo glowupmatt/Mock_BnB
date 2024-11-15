@@ -378,7 +378,7 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
     console.error(e);
     return res
       .status(500)
-      .json({ error: "An error occurred while fetching spots" });
+      .json({ error: "An error occured while fetching spots" });
   }
 });
 
@@ -446,7 +446,7 @@ router.get("/:spotId", async (req, res, next) => {
   } catch (e) {
     console.error(e);
     res.status(500);
-    return res.json({ error: "An error occurred while fetching spots" });
+    return res.json({ error: "An error occured while fetching spots" });
   }
 });
 
@@ -503,7 +503,7 @@ router.put(
       console.error(e);
       return res
         .status(500)
-        .json({ error: "An error occurred while fetching spots" });
+        .json({ error: "An error occured while fetching spots" });
     }
   }
 );
@@ -525,7 +525,7 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
   } catch (e) {
     console.error(e);
     res.status(500);
-    return res.json({ error: "An error occurred while fetching spots" });
+    return res.json({ error: "An error occured while fetching spots" });
   }
 });
 

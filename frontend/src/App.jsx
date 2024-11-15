@@ -18,7 +18,9 @@ function Layout() {
   return (
     <div className="app-container">
       <div className="app-display">
-        <Navigation isLoaded={isLoaded} />
+        <div className="navigation">
+          <Navigation isLoaded={isLoaded} />
+        </div>
         {isLoaded && <Outlet />}
       </div>
     </div>
