@@ -69,10 +69,15 @@
 }
 @media screen and (min-width: 1024px) {
   .spot-image-container {
-    max-height: 12rem;
+    max-height: 17rem;
   }
 
   .spot-card {
     width: 90%;
+  }
+}
+@media screen and (min-width: 2560px) {
+  .spot-image-container {
+    max-height: 32rem;
   }
 }
