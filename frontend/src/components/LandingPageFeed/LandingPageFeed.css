@@ -5,6 +5,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 2rem;
+  justify-items: center;
 }
 
 @media screen and (min-width: 768px) {
