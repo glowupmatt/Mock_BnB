@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
 
   const loginWithGuest = () => {
     dispatch(
-      sessionActions.login({ credential: "guest", password: "guest1234" })
+      sessionActions.login({ credential: "Demo-lition", password: "password" })
     );
     closeMenu();
   };

@@ -15,7 +15,10 @@ function LoginFormModal() {
     e.preventDefault();
     setErrors({});
     return dispatch(sessionActions.login({ credential, password }))
-      .then(closeModal)
+      .then(() => {
+        closeModal();
+        return dispatch(sessionActions.getUserProperties());
+      })
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {

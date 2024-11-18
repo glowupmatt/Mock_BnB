@@ -21,10 +21,14 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  padding-top: 60px; /* Adjust this value based on the height of your navigation bar */
+  padding-top: 60px;
 }
 
 .app-display {
   max-width: 2560px;
   width: 100%;
+}
+
+.display-content-container {
+  padding: 1rem 0;
 }

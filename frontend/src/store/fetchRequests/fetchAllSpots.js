@@ -1,25 +1,25 @@
-const FETCH_DATA_REQUEST = "session/FETCH_DATA_REQUEST";
-const FETCH_DATA_SUCCESS = "session/FETCH_DATA_SUCCESS";
-const FETCH_DATA_FAILURE = "session/FETCH_DATA_FAILURE";
+const FETCH_ALLSPOTS_REQUEST = "session/FETCH_ALLSPOTS_REQUEST";
+const FETCH_ALLSPOTS_SUCCESS = "session/FETCH_ALLSPOTS_SUCCESS";
+const FETCH_ALLSPOTS_FAILURE = "session/FETCH_ALLSPOTS_FAILURE";
 
 const fetchDataRequest = () => ({
-  type: FETCH_DATA_REQUEST,
+  type: FETCH_ALLSPOTS_REQUEST,
 });
 
 const fetchDataSuccess = (data) => ({
-  type: FETCH_DATA_SUCCESS,
+  type: FETCH_ALLSPOTS_SUCCESS,
   payload: data,
 });
 
 const fetchDataFailure = (error) => ({
-  type: FETCH_DATA_FAILURE,
+  type: FETCH_ALLSPOTS_FAILURE,
   payload: error,
 });
 
-export const fetchData = () => async (dispatch) => {
+export const fetchAllSpots = (pageNumber) => async (dispatch) => {
   dispatch(fetchDataRequest());
   try {
-    const response = await fetch("/api/spots");
+    const response = await fetch(`/api/spots?page=${pageNumber}&size=10`);
     const data = await response.json();
     dispatch(fetchDataSuccess(data));
   } catch (error) {
@@ -33,21 +33,21 @@ const initialState = {
   error: null,
 };
 
-const fetchReducer = (state = initialState, action) => {
+const fetchSpotsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_DATA_REQUEST:
+    case FETCH_ALLSPOTS_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       };
-    case FETCH_DATA_SUCCESS:
+    case FETCH_ALLSPOTS_SUCCESS:
       return {
         ...state,
         loading: false,
         data: action.payload,
       };
-    case FETCH_DATA_FAILURE:
+    case FETCH_ALLSPOTS_FAILURE:
       return {
         ...state,
         loading: false,
@@ -58,4 +58,4 @@ const fetchReducer = (state = initialState, action) => {
   }
 };
 
-export default fetchReducer;
+export default fetchSpotsReducer;

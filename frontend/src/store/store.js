@@ -1,11 +1,13 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
-import fetchReducer from "./apiCalls";
+import fetchSpotsReducer from "./fetchRequests/fetchAllSpots";
+import fetchUserSpotReducer from "./fetchRequests/fetchCurrentUserSpots";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  fetch: fetchReducer,
+  fetchAllSpots: fetchSpotsReducer,
+  fetchUserSpots: fetchUserSpotReducer,
 });
 
 let enhancer;

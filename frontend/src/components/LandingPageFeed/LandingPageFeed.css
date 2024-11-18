@@ -8,6 +8,21 @@
   justify-items: center;
 }
 
+.home-pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pagination-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #e9ecef;
+  cursor: pointer;
+  border: none;
+}
+
 @media screen and (min-width: 768px) {
   .spots-parent-container {
     display: grid;

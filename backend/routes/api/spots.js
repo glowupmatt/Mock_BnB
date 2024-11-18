@@ -153,8 +153,6 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
   const { spotId } = req.params;
   const { user } = req;
 
-  console.log(user);
-
   try {
     const spot = await Spot.findByPk(spotId);
 
