@@ -1,8 +1,6 @@
 .spots-parent-container {
   display: flex;
-  width: 100%;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   gap: 2rem;
   justify-items: center;
@@ -26,14 +24,20 @@
 @media screen and (min-width: 768px) {
   .spots-parent-container {
     display: grid;
-    grid-template-columns: repeat(2, minmax(13rem, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: stretch;
+    gap: 0;
   }
 }
 @media screen and (min-width: 1024px) {
   .spots-parent-container {
     display: grid;
-    grid-template-columns: repeat(3, minmax(13rem, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1440px) {
+  .spots-parent-container {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
   }
 }

@@ -40,7 +40,9 @@ function PropertyToggle({ sessionUser, userSpots, userId }) {
       {sessionUser ? (
         <div
           ref={ref}
-          className={`property-toggle-container ${isHovered ? "hovered" : ""}`}
+          className={`property-toggle-container ${
+            isHovered ? "hovered" : "non-hovered"
+          }`}
         >
           {userSpots.length > 0 ? (
             <NavLink to={`/${userId}/current-properties/`}>

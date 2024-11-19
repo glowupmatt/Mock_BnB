@@ -1,13 +1,12 @@
 .property-toggle-container {
   padding: 0.5rem;
   border-radius: 0.4rem;
-  background-color: rgb(226, 87, 87);
   font-size: 0.5rem;
   transition: background-color 0.2s ease;
 }
 
-.property-toggle-container:hover {
-  background-color: rgb(255, 255, 255);
+.property-toggle-container.non-hovered {
+  background-color: rgb(226, 87, 87);
 }
 
 .property-toggle-container.hovered {
