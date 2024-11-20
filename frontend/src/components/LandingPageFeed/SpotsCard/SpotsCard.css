@@ -54,3 +54,10 @@
   font-size: 1rem;
   font-weight: bolder;
 }
+
+@media screen and (min-width: 768px) {
+  .spot-data-container {
+    width: 24rem;
+    height: 24rem;
+  }
+}

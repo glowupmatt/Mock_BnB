@@ -29,7 +29,7 @@ function PropertyToggle({ sessionUser, userSpots, userId }) {
         element.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
-  }, [ref, isHovered]);
+  }, [ref]);
 
   if (isLoading) {
     return <div>Loading...</div>;
