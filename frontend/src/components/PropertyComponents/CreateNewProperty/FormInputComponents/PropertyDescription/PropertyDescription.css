@@ -11,8 +11,17 @@
   box-shadow: 10px 7px 29px -6px rgba(0, 0, 0, 0.75);
 }
 
+.form-title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 .property-description-form {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

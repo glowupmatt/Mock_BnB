@@ -13,35 +13,38 @@ function PropertyDescription({
 }) {
   return (
     <section className="property-form-container">
-      <div className="property-description-form">
-        <Input
-          classNameInput="input-container-top"
-          label="property-name"
-          title="Property Name"
-          value={propertyName}
-          setValue={setPropertyName}
-        />
-        <Input
-          classNameInput="input-container-mid"
-          label="property-description"
-          title="Property Description"
-          value={propertyDescription}
-          setValue={setPropertyDescription}
-        />
-        <Input
-          classNameInput="input-container-mid"
-          label="property-price"
-          title="Property Price"
-          value={propertyPrice}
-          setValue={setPropertyPrice}
-        />
-        <Input
-          classNameInput="input-container-bottom"
-          label="property-image"
-          title="Property Image"
-          value={propertyImage}
-          setValue={setPropertyImage}
-        />
+      <div className="form-title-container">
+        <h2>Share Some Details Of Your Property</h2>
+        <div className="property-description-form">
+          <Input
+            classNameInput="input-container-top"
+            label="property-name"
+            title="Property Name"
+            value={propertyName}
+            setValue={setPropertyName}
+          />
+          <Input
+            classNameInput="input-container-mid"
+            label="property-description"
+            title="Property Description"
+            value={propertyDescription}
+            setValue={setPropertyDescription}
+          />
+          <Input
+            classNameInput="input-container-mid"
+            label="property-price"
+            title="Property Price"
+            value={propertyPrice}
+            setValue={setPropertyPrice}
+          />
+          <Input
+            classNameInput="input-container-bottom"
+            label="property-image"
+            title="Property Image"
+            value={propertyImage}
+            setValue={setPropertyImage}
+          />
+        </div>
       </div>
       {propertyImage === "" ? (
         <div className="property-image-container">
