@@ -38,6 +38,6 @@
 @media screen and (min-width: 1440px) {
   .spots-parent-container {
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(4, auto);
   }
 }

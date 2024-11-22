@@ -61,3 +61,13 @@
     height: 24rem;
   }
 }
+@media screen and (min-width: 390px) {
+  .spot-card {
+    max-width: 85%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .spot-card {
+    max-width: 100%;
+  }
+}

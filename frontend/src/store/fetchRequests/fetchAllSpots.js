@@ -19,7 +19,7 @@ const fetchDataFailure = (error) => ({
 export const fetchAllSpots = (pageNumber) => async (dispatch) => {
   dispatch(fetchDataRequest());
   try {
-    const response = await fetch(`/api/spots?page=${pageNumber}&size=10`);
+    const response = await fetch(`/api/spots?page=${pageNumber}&size=12`);
     const data = await response.json();
     dispatch(fetchDataSuccess(data));
   } catch (error) {

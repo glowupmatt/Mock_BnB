@@ -5,6 +5,10 @@
   border: solid 1px #858585;
   border-radius: 5px;
   gap: 1rem;
+  width: 100%;
+  -webkit-box-shadow: 10px 7px 29px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 7px 29px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 7px 29px -6px rgba(0, 0, 0, 0.75);
 }
 
 .address-form {
@@ -12,50 +16,8 @@
   flex-direction: column;
 }
 
-/* .input-container {
-
-} */
-
-.input-container-mid {
-  display: flex;
-  flex-direction: column;
-  border: solid 1px #858585;
-  border-bottom: none;
-  padding: 0.5rem;
-}
-
-.input-container-top {
-  display: flex;
-  flex-direction: column;
-  border: solid 1px #858585;
-  padding: 0.5rem;
-  border-bottom: none;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-.input-container-bottom {
-  display: flex;
-  flex-direction: column;
-  border: solid 1px #858585;
-  padding: 0.5rem;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.input-title {
-  font-size: 0.7rem;
-  font-weight: 200;
-  color: #858585;
-  margin-bottom: 0.5rem;
-}
-
-.input {
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  background-color: transparent;
-}
-
-.input:focus {
-  background-color: transparent;
+@media screen and (min-width: 768px) {
+  .address-form-container {
+    max-width: 45rem;
+  }
 }
