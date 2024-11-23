@@ -1,6 +1,6 @@
-import "./NextPageButton.css";
+import "./PageButton.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addPageNumber } from "../../../../store/FormPageNumber/pageNumberReducer";
+import { addPageNumber } from "../../../../../store/FormPageNumber/pageNumberReducer";
 
 function NextPageButton({ isDisabled }) {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ function NextPageButton({ isDisabled }) {
     <button
       type="button"
       disabled={isDisabled}
-      className="next-page-button"
+      className="page-button"
       onClick={() => dispatch(addPageNumber(pageNumber))}
     >
       Next Page

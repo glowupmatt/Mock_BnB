@@ -1,12 +1,14 @@
-.next-page-button {
+.page-button {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background-color: #e9ecef;
   cursor: pointer;
   border: none;
-  margin-top: 2rem;
+  width: 100%;
+  height: 100%;
   transition: background-color 0.2s ease;
+  max-height: 3rem;
 }
-.next-page-button:hover {
+.page-button:hover {
   background-color: #c53d3d;
 }

@@ -62,10 +62,9 @@ function CreateNewProperty() {
             setPropertyPrice={setPropertyPrice}
             propertyImage={propertyImage}
             setPropertyImage={setPropertyImage}
+            pageNumber={pageNumber}
           />
         )}
-
-        <input className="create-property-submit-button" type="submit" />
       </form>
     </section>
   );

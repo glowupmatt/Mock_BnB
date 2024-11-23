@@ -1,23 +1,23 @@
 const ADD_PAGE_NUMBER = "ADD_PAGE_NUMBER";
 const SUBTRACT_PAGE_NUMBER = "SUBTRACT_PAGE_NUMBER";
 
-const setPageNumber = (data) => ({
+const setAddPageNumber = (data) => ({
   type: ADD_PAGE_NUMBER,
   payload: data,
 });
 
-export const subtractPageNumber = (data) => ({
+const setSubtractPageNumber = (data) => ({
   type: SUBTRACT_PAGE_NUMBER,
   payload: data,
 });
 
 export const addPageNumber = (pageNumber) => async (dispatch) => {
-  dispatch(setPageNumber(pageNumber + 1));
+  dispatch(setAddPageNumber(pageNumber + 1));
   return pageNumber;
 };
 
-export const subtractPageNumberCtrl = (pageNumber) => async (dispatch) => {
-  dispatch(subtractPageNumber(pageNumber - 1));
+export const subtractPageNumber = (pageNumber) => async (dispatch) => {
+  dispatch(setSubtractPageNumber(pageNumber - 1));
   return pageNumber;
 };
 

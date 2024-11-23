@@ -2,7 +2,7 @@ import "./Input.css";
 
 function Input({ classNameInput, label, title, value, setValue }) {
   return (
-    <div className={classNameInput}>
+    <div className={`${classNameInput} input-container`}>
       <label htmlFor={label} className="input-title">
         {title}
       </label>

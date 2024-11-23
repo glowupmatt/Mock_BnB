@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useState } from "react";
 import "./AddressForm.css";
 import GoogleMaps from "./GoogleMaps";
-import NextPageButton from "../NextPageButton";
+import NextPageButton from "../FormButtons/NextPageButton";
 import useLocationHook from "../../../../../hooks/useLocationHook";
 import Input from "../InputComponents/Input";
 const AddressForm = ({
