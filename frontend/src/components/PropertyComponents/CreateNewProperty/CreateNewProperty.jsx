@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AddressForm from "./FormInputComponents/AddressInputComponents/AddressForm";
 import PropertyDescription from "./FormInputComponents/PropertyDescription/PropertyDescription";
+import PrevPageButton from "./FormInputComponents/FormButtons/PrevPageButton";
 import "./CreateNewProperty.css";
+import NextPageButton from "./FormInputComponents/FormButtons/NextPageButton";
 
 function CreateNewProperty() {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ function CreateNewProperty() {
 
   //PAGE NUMBER
   const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   //ADDRESS FORM
   const [street, setStreet] = useState("");
@@ -49,6 +52,8 @@ function CreateNewProperty() {
             setState={setState}
             zipCode={zipCode}
             setZipCode={setZipCode}
+            setIsDisabled={setIsDisabled}
+            isDisabled={isDisabled}
           />
         )}
 
@@ -65,6 +70,16 @@ function CreateNewProperty() {
             pageNumber={pageNumber}
           />
         )}
+        <div className="submit-button-container">
+          {pageNumber === 1 ? (
+            <NextPageButton isDisabled={isDisabled} />
+          ) : (
+            <>
+              <PrevPageButton />
+              <input className="create-property-submit-button" type="submit" />
+            </>
+          )}
+        </div>
       </form>
     </section>
   );

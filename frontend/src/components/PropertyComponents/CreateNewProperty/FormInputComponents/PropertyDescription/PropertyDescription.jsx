@@ -1,7 +1,6 @@
 import Input from "../InputComponents/Input";
-// import { useState } from "react";
+import { useState } from "react";
 import "./PropertyDescription.css";
-import PrevPageButton from "../FormButtons/PrevPageButton";
 
 function PropertyDescription({
   propertyName,
@@ -13,9 +12,18 @@ function PropertyDescription({
   propertyImage,
   setPropertyImage,
 }) {
+  const [propertyImageUrl, setPropertyImageUrl] = useState(
+    "/upload-image-white.png"
+  );
+  const handleMouseEnter = () => {
+    setPropertyImageUrl("/upload-image-red.png");
+  };
+  const handleMouseLeave = () => {
+    setPropertyImageUrl("/upload-image-white.png");
+  };
   return (
     <>
-      <section className="property-form-container">
+      <div className="property-form-container">
         <div className="form-title-container">
           <h2 className="page-title">Share Some Details Of Your Property</h2>
           <div className="property-description-form">
@@ -50,20 +58,20 @@ function PropertyDescription({
           </div>
         </div>
         {propertyImage === "" ? (
-          <div className="property-image-container">
+          <div
+            className="property-image-container"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <img
               className="property-image"
-              src="https://a0.muscache.com/im/pictures/miso/Hosting-53274539/original/1c0f22ac-4df7-4463-a915-c66bab72eaf0.jpeg?im_w=1440&im_q=highq"
+              src={propertyImageUrl}
               alt="property"
             />
           </div>
         ) : (
           <img src={propertyImage} alt="property" />
         )}
-      </section>
-      <div className="submit-button-container">
-        <PrevPageButton />
-        <input className="create-property-submit-button" type="submit" />
       </div>
     </>
   );

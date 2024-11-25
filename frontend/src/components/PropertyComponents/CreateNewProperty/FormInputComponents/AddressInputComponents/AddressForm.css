@@ -2,22 +2,50 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  border: solid 1px #858585;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   gap: 1rem;
   width: 100%;
-  -webkit-box-shadow: 10px 7px 29px -6px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 7px 29px -6px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 7px 29px -6px rgba(0, 0, 0, 0.75);
+}
+
+.address-form-container-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+}
+
+.address-info-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
 }
 
 .address-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
-  .address-form-container {
-    max-width: 45rem;
+  .address-form-container-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0rem;
+  }
+  .address-info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .address-info-container {
+    max-width: 50vw;
   }
 }

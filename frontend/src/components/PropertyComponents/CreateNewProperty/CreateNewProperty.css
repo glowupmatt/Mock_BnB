@@ -1,6 +1,5 @@
 .form-container {
   display: flex;
-  height: 88vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -14,9 +13,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   width: 100%;
-  max-width: 50rem;
 }
 
 .create-property-submit-button {
@@ -29,12 +27,13 @@
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
+  max-width: 16rem;
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .form-container {
     padding: 0 3rem;
     width: 100%;
     height: 100%;
   }
-}
+} */
