@@ -5,7 +5,7 @@ import "./PropertyToggle.css";
 function PropertyToggle({ sessionUser, userSpots, userId }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const ref = useRef();
+  const ref = useRef(null);
 
   useEffect(() => {
     if (userSpots !== undefined) {
@@ -23,6 +23,8 @@ function PropertyToggle({ sessionUser, userSpots, userId }) {
       element.addEventListener("mouseleave", handleMouseLeave);
     }
 
+    console.log("PropertyToggle mounted");
+
     return () => {
       if (element) {
         element.removeEventListener("mouseenter", handleMouseEnter);
@@ -36,10 +38,9 @@ function PropertyToggle({ sessionUser, userSpots, userId }) {
   }
 
   return (
-    <div>
+    <div className="holdRef" ref={ref}>
       {sessionUser ? (
         <div
-          ref={ref}
           className={`property-toggle-container ${
             isHovered ? "hovered" : "non-hovered"
           }`}

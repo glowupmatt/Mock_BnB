@@ -12,6 +12,9 @@
 .property-toggle-container.hovered {
   background-color: rgb(255, 255, 255);
 }
+/* .property-toggle-container:hover {
+  background-color: rgb(255, 255, 255);
+} */
 
 .property-toggle-container.hovered a {
   color: rgb(226, 87, 87);
@@ -22,10 +25,10 @@
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.property-toggle-container a:hover {
+/* .property-toggle-container a:hover {
   color: rgb(226, 87, 87);
   text-decoration: none;
-}
+} */
 
 .property-toggle-container a:active {
   color: inherit;
