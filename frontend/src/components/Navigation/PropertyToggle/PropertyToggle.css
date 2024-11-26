@@ -1,0 +1,41 @@
+.property-toggle-container {
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  font-size: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.property-toggle-container.non-hovered {
+  background-color: rgb(226, 87, 87);
+}
+
+.property-toggle-container.hovered {
+  background-color: rgb(255, 255, 255);
+}
+/* .property-toggle-container:hover {
+  background-color: rgb(255, 255, 255);
+} */
+
+.property-toggle-container.hovered a {
+  color: rgb(226, 87, 87);
+}
+
+.property-toggle-container a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+/* .property-toggle-container a:hover {
+  color: rgb(226, 87, 87);
+  text-decoration: none;
+} */
+
+.property-toggle-container a:active {
+  color: inherit;
+}
+
+@media screen and (min-width: 768px) {
+  .property-toggle-container {
+    font-size: 1rem;
+  }
+}

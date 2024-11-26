@@ -1,0 +1,51 @@
+.address-form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  gap: 1rem;
+  width: 100%;
+}
+
+.address-form-container-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+}
+
+.address-info-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .address-form-container-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0rem;
+  }
+  .address-info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .address-info-container {
+    max-width: 50vw;
+  }
+}

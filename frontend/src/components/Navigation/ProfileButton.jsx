@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import * as sessionActions from "../../store/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
@@ -9,11 +10,12 @@ import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    e.stopPropagation();
     setShowMenu(!showMenu);
   };
 
@@ -37,11 +39,12 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
+    navigate("/");
   };
 
   const loginWithGuest = () => {
     dispatch(
-      sessionActions.login({ credential: "guest", password: "guest1234" })
+      sessionActions.login({ credential: "Demo-lition", password: "password" })
     );
     closeMenu();
   };
@@ -57,10 +60,10 @@ function ProfileButton({ user }) {
         <ul className={ulClassName} ref={ulRef}>
           {user ? (
             <>
-              <li>{user.username}</li>
               <li>
-                {user.firstName} {user.lastName}
+                Hello {user.firstName} {user.lastName}
               </li>
+              <li>{user.username}</li>
               <li>{user.email}</li>
               <li>
                 <button className="profile-logout-button" onClick={logout}>

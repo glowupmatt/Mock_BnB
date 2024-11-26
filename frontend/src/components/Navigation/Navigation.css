@@ -7,6 +7,12 @@
   border-bottom: 1px solid #e9ecef;
 }
 
+.user-controls-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 li {
   list-style: none;
 }
