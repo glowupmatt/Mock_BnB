@@ -532,8 +532,18 @@ router.post("/", spotValidationRules, requireAuth, async (req, res, next) => {
   const { user } = req;
   const ownerId = user.id;
 
-  const { address, city, state, country, lat, lng, name, description, price } =
-    req.body;
+  const {
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    previewImage,
+  } = req.body;
   try {
     const spot = await Spot.create({
       ownerId,
@@ -546,6 +556,7 @@ router.post("/", spotValidationRules, requireAuth, async (req, res, next) => {
       name,
       description,
       price,
+      previewImage,
     });
 
     return res.status(201).json(spot);

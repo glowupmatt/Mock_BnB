@@ -5,6 +5,7 @@ import useLocationHook from "../../../../../hooks/useLocationHook";
 import Input from "../InputComponents/Input";
 const AddressForm = ({
   street,
+
   setStreet,
   city,
   setCity,
@@ -12,6 +13,8 @@ const AddressForm = ({
   setState,
   zipCode,
   setZipCode,
+  country,
+  setCountry,
   lat,
   setLat,
   lng,
@@ -56,6 +59,13 @@ const AddressForm = ({
             title="State"
             value={state}
             setValue={setState}
+          />
+          <Input
+            classNameInput="country input-container-mid"
+            label="country"
+            title="Country"
+            value={country}
+            setValue={setCountry}
           />
           <Input
             classNameInput="zip-code input-container-bottom"

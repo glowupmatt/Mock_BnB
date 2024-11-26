@@ -22,7 +22,7 @@ export const subtractPageNumber = (pageNumber) => async (dispatch) => {
 };
 
 const initialState = {
-  pageNumber: 2,
+  pageNumber: 1,
 };
 
 const pageNumberReducer = (state = initialState, action) => {

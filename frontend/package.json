@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.13.1",
+    "@cloudinary/url-gen": "^1.21.0",
     "@vis.gl/react-google-maps": "^1.4.0",
     "aa-react18-redux-vite-template": "file:",
     "authenticate-me": "file:",
+    "cloudinary-react": "^1.8.1",
     "dotenv": "^16.4.5",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",

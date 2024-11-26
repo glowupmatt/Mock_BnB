@@ -17,7 +17,6 @@
 
 .app-container {
   display: flex;
-  min-width: 100vw;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
