@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import LandingPageFeed from "./components/LandingPageFeed/LandingPageFeed";
 import CreateNewProperty from "./components/PropertyComponents/CreateNewProperty/CreateNewProperty";
 import ListAllProperties from "./components/PropertyComponents/ListAllProperties/ListAllProperties";
+import SelectedSpotsPage from "./components/SelectedSpotsPage/SelectedSpotsPage";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPageFeed />,
+      },
+      {
+        path: "/spots/:spotId",
+        element: <SelectedSpotsPage />,
       },
       {
         path: "/:userId/current-properties/",
