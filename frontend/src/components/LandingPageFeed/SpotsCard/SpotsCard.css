@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   min-width: 10rem;
+  text-decoration: none;
 }
 
 .spot-data-container {
@@ -32,27 +33,53 @@
 
 .spot-info-container {
   display: flex;
-  flex-direction: column;
+  padding: 0 0.5rem;
+  justify-content: space-between;
   align-items: flex-start;
   width: 100%;
   gap: 0.1rem;
 }
 
+.tooltip {
+  position: absolute;
+  z-index: 100;
+  display: inline-block;
+  background-color: white;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+}
 .spot-name {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bolder;
   color: rgb(59, 59, 59);
 }
 
 .spot-location {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: bolder;
   color: rgb(59, 59, 59);
-  font-weight: normal;
 }
 
 .spot-price {
   font-size: 1rem;
   font-weight: bolder;
+  color: black;
+}
+
+.star-rating-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.star-icon {
+  color: #f0c929;
+}
+
+.new-icon {
+  color: #df5745;
 }
 
 @media screen and (min-width: 768px) {

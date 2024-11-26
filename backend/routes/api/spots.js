@@ -611,10 +611,24 @@ router.get("/", queryValidationRules, async (req, res) => {
       ...pagination,
     });
 
-    const spotsWithReviews = spots.map((spot) => ({
-      ...spot.dataValues,
-      avgRating: parseFloat(spot.dataValues.avgRating) || 0,
-    }));
+    // Fetch reviews for the spots
+    const spotIds = spots.map((spot) => spot.id);
+    const reviews = await Review.findAll({
+      where: {
+        spotId: {
+          [Op.in]: spotIds,
+        },
+      },
+    });
+
+    const spotsWithReviews = spots.map((spot) => {
+      const spotReviews = reviews.filter((review) => review.spotId === spot.id);
+      return {
+        ...spot.dataValues,
+        avgRating: parseFloat(spot.dataValues.avgRating).toFixed(2) || 0,
+        reviews: spotReviews,
+      };
+    });
 
     return res.json({
       Spots: spotsWithReviews,
