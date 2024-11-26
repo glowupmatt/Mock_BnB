@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import * as sessionActions from "./store/session";
 import LandingPageFeed from "./components/LandingPageFeed/LandingPageFeed";
+import CreateNewProperty from "./components/PropertyComponents/CreateNewProperty/CreateNewProperty";
+import ListAllProperties from "./components/PropertyComponents/ListAllProperties/ListAllProperties";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -21,7 +23,9 @@ function Layout() {
         <div className="navigation">
           <Navigation isLoaded={isLoaded} />
         </div>
-        {isLoaded && <Outlet />}
+        <div className="display-content-container">
+          {isLoaded && <Outlet />}
+        </div>
       </div>
     </div>
   );
@@ -34,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPageFeed />,
+      },
+      {
+        path: "/:userId/current-properties/",
+        element: <ListAllProperties />,
+      },
+      {
+        path: "/:userId/new-property",
+        element: <CreateNewProperty />,
       },
     ],
   },

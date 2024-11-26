@@ -17,14 +17,19 @@
 
 .app-container {
   display: flex;
-  min-width: 100vw;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  padding-top: 60px; /* Adjust this value based on the height of your navigation bar */
+  padding-top: 60px;
+  overflow: hidden;
 }
 
 .app-display {
   max-width: 2560px;
   width: 100%;
+}
+
+.display-content-container {
+  padding: 3rem 0rem;
+  overflow: hidden;
 }
