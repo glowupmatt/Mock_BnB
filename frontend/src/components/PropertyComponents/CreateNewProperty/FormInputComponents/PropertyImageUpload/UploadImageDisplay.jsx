@@ -1,4 +1,4 @@
-import UploadWidget from "../PropertyDescription/UploadWidget/UploadWidget";
+import UploadWidget from "../UploadWidget/UploadWidget";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import "./ImageFormUpload.css";
@@ -26,7 +26,6 @@ function UploadImageDisplay({ importedPhotos, closeModal, handleOnUpload }) {
       </div>
       <div className="uploaded-photos-container">
         {importedPhotos.map((photo, idx) => {
-          console.log(photo.image);
           return (
             <div key={idx} className="uploaded-photo-container">
               <img

@@ -1,3 +1,22 @@
+.new-image-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.title-container {
+  align-self: center;
+  text-align: center;
+}
+
+.title-container h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 .image-upload-container {
   border: dotted 2px #d3d3d3;
   border-radius: 10px;
@@ -7,6 +26,14 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  width: 100%;
+  max-width: 45rem;
+}
+
+@media screen and (min-width: 768px) {
+  .image-upload-container {
+    max-width: 25rem;
+  }
 }
 
 .image-container {

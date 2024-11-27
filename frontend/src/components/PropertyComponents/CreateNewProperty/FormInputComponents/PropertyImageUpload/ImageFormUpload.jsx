@@ -1,18 +1,32 @@
 import "./ImageFormUpload.css";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../../../../context/Modal";
+import { addPhoto } from "../../../../../store/uploadImage/uploadImageReducer";
 import NoUploadImageComponent from "./NoUploadImageComponent";
 import UploadImageDisplay from "./UploadImageDisplay";
 
-function ImageFormUpload(handleOnUpload) {
+function ImageFormUpload() {
+  // eslint-disable-next-line no-unused-vars
+  const [error, updateError] = useState(null);
+
+  const dispatch = useDispatch();
+  const handleOnUpload = (error, result, widget) => {
+    if (error) {
+      updateError(error);
+      widget.close({
+        quiet: true,
+      });
+      return;
+    }
+
+    dispatch(addPhoto({ image: result.info.secure_url }));
+  };
+
   const { closeModal } = useModal();
   const importedPhotos = useSelector((state) => state.uploadImage.photoList);
 
-  useEffect(() => {
-    console.log("importedPhotos changed:", importedPhotos);
-  }, [importedPhotos]);
+  useEffect(() => {}, [importedPhotos]);
   return (
     <>
       {importedPhotos.length > 0 ? (

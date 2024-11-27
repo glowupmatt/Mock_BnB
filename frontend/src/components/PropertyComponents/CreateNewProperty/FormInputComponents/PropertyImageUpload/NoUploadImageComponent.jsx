@@ -1,5 +1,5 @@
 import { FaTimes } from "react-icons/fa";
-import UploadWidget from "../PropertyDescription/UploadWidget/UploadWidget";
+import UploadWidget from "../UploadWidget/UploadWidget";
 import "./ImageFormUpload.css";
 
 function NoUploadImageComponent({ handleOnUpload, closeModal }) {

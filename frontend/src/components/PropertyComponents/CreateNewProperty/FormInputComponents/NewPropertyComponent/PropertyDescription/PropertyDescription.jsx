@@ -1,6 +1,6 @@
-import Input from "../InputComponents/Input";
+import Input from "../../InputComponents/Input";
 import { useState } from "react";
-import UploadWidget from "./UploadWidget/UploadWidget";
+import UploadWidget from "../../UploadWidget/UploadWidget";
 import "./PropertyDescription.css";
 
 function PropertyDescription({
@@ -33,7 +33,6 @@ function PropertyDescription({
       });
       return;
     }
-    console.log(result);
     setPropertyImage(result?.info?.secure_url);
   }
 

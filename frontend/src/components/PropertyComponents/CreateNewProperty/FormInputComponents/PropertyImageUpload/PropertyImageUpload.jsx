@@ -1,43 +1,22 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addPhoto } from "../../../../../store/uploadImage/uploadImageReducer";
+import { useSelector } from "react-redux";
 import { useModal } from "../../../../../context/Modal";
 import OpenModalMenuItem from "../../../../Navigation/OpenModalMenuItem";
 import ImageFormUpload from "./ImageFormUpload";
-
 import "./PropertyImageUpload.css";
 
 function PropertyImageUpload() {
-  const dispatch = useDispatch();
   const importedPhotos = useSelector((state) => state.uploadImage.photoList);
-  const [error, updateError] = useState(null);
   const closeMenu = useModal();
-  useEffect(() => {
-    console.log(
-      "importedPhotos changed on PropertyImageUpload",
-      importedPhotos
-    );
-  }, [importedPhotos]);
-
-  const handleOnUpload = (error, result, widget) => {
-    if (error) {
-      updateError(error);
-      widget.close({
-        quiet: true,
-      });
-      return;
-    }
-    console.log(result, "result");
-    dispatch(addPhoto({ image: result.info.secure_url }));
-  };
 
   return (
-    <div>
-      <h3>Add Some photos of your property</h3>
-      <p>
-        You&apos;ll need 5 photos to get started. You can add more or make
-        changes later.
-      </p>
+    <div className="new-image-form-container">
+      <div className="title-container">
+        <h3>Add Some photos of your property</h3>
+        <p>
+          You&apos;ll need 5 photos to get started. You can add more or make
+          changes later.
+        </p>
+      </div>
       <div className="image-upload-container">
         <div className="camera-icon-container">
           {importedPhotos.length > 0 ? (
@@ -64,7 +43,7 @@ function PropertyImageUpload() {
         </div>
         <div className="modal-button-container">
           <OpenModalMenuItem
-            modalComponent={<ImageFormUpload handleOnUpload={handleOnUpload} />}
+            modalComponent={<ImageFormUpload />}
             itemText="Add photos"
             onItemClick={closeMenu}
           />
