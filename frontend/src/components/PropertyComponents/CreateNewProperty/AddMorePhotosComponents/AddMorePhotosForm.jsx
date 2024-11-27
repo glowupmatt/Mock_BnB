@@ -28,15 +28,13 @@ function AddMorePhotosForm({ newProperty, setNewProperty }) {
         preview: false,
       };
       async function addPhotos() {
-        const res = await csrfFetch(`/api/spots/${propertyId}/images`, {
+        await csrfFetch(`/api/spots/${propertyId}/images`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         });
-        const data = await res.json();
-        console.log(data, "data");
       }
 
       try {
