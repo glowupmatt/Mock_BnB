@@ -21,9 +21,9 @@ function Layout() {
   return (
     <div className="app-container">
       <div className="app-display">
-        <div className="navigation">
+        <nav className="navigation">
           <Navigation isLoaded={isLoaded} />
-        </div>
+        </nav>
         <div className="display-content-container">
           {isLoaded && <Outlet />}
         </div>

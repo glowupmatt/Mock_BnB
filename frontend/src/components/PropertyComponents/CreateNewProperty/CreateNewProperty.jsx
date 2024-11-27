@@ -2,18 +2,21 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { csrfFetch } from "../../../store/csrf";
+import { addPageNumber } from "../../../store/FormPageNumber/pageNumberReducer";
+import { useDispatch } from "react-redux";
 import AddressForm from "./FormInputComponents/AddressInputComponents/AddressForm";
 import PropertyDescription from "./FormInputComponents/PropertyDescription/PropertyDescription";
 import PrevPageButton from "./FormInputComponents/FormButtons/PrevPageButton";
 import "./CreateNewProperty.css";
 import NextPageButton from "./FormInputComponents/FormButtons/NextPageButton";
+import PropertyImageUpload from "./FormInputComponents/PropertyImageUpload/PropertyImageUpload";
 
 function CreateNewProperty() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
-    console.log(user.id);
     if (!user) {
       navigate("/");
     }
@@ -22,6 +25,7 @@ function CreateNewProperty() {
   //PAGE NUMBER
   const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
   //ADDRESS FORM
   const [street, setStreet] = useState("");
@@ -38,6 +42,28 @@ function CreateNewProperty() {
   const [propertyPrice, setPropertyPrice] = useState("");
   const [propertyImage, setPropertyImage] = useState("");
 
+  useEffect(() => {
+    if (
+      propertyName === "" ||
+      propertyDescription === "" ||
+      propertyPrice === "" ||
+      propertyImage === ""
+    ) {
+      setSubmitDisabled(true);
+    } else {
+      setSubmitDisabled(false);
+    }
+  }, [
+    street,
+    city,
+    state,
+    zipCode,
+    propertyName,
+    propertyDescription,
+    propertyPrice,
+    propertyImage,
+  ]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const property = {
@@ -53,7 +79,6 @@ function CreateNewProperty() {
       price: propertyPrice,
       previewImage: propertyImage,
     };
-    console.log(property);
 
     async function createProperty() {
       const response = await csrfFetch("/api/spots", {
@@ -66,7 +91,6 @@ function CreateNewProperty() {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        navigate(`/${user.id}/current-properties`);
       }
     }
     try {
@@ -113,13 +137,33 @@ function CreateNewProperty() {
             pageNumber={pageNumber}
           />
         )}
+
+        {pageNumber === 3 && <PropertyImageUpload />}
         <div className="submit-button-container">
           {pageNumber === 1 ? (
             <NextPageButton isDisabled={isDisabled} />
+          ) : pageNumber === 2 ? (
+            <>
+              <PrevPageButton />
+              <button
+                className="create-property-submit-button"
+                type="submit"
+                disabled={submitDisabled}
+                onClick={() => dispatch(addPageNumber(pageNumber))}
+              >
+                Next Page
+              </button>
+            </>
           ) : (
             <>
               <PrevPageButton />
-              <input className="create-property-submit-button" type="submit" />
+              <button
+                className="create-property-submit-button"
+                type="submit"
+                disabled={true}
+              >
+                Submit
+              </button>
             </>
           )}
         </div>
