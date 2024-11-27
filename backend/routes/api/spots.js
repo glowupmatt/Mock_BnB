@@ -406,6 +406,9 @@ router.get("/:spotId", async (req, res, next) => {
           attributes: ["id", "url", "preview"],
         },
         {
+          model: Review,
+        },
+        {
           model: User,
           as: "Owner",
           attributes: ["id", "firstName", "lastName"],
