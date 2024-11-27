@@ -11,9 +11,9 @@
   display: flex;
   gap: 2rem;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  min-height: 77vh;
   align-items: center;
-  /* padding: 0 1rem; */
   width: 100%;
 }
 
@@ -28,6 +28,14 @@
   font-size: 1rem;
   font-weight: 600;
   max-width: 16rem;
+}
+
+.upload-image-submit-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 /* @media screen and (min-width: 768px) {
