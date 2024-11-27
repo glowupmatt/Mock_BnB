@@ -5,7 +5,7 @@ import "./ImageFormUpload.css";
 
 function UploadImageDisplay({ importedPhotos, closeModal, handleOnUpload }) {
   return (
-    <>
+    <div className="upload-photo-modal-content">
       <div className="info-control-container">
         <button className="exit-button" type="button" onClick={closeModal}>
           <FaTimes />
@@ -37,7 +37,7 @@ function UploadImageDisplay({ importedPhotos, closeModal, handleOnUpload }) {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 
