@@ -1,0 +1,24 @@
+.comment-form-container {
+  padding: 1rem;
+}
+
+.submit-comment-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #ee7a7a;
+  color: white;
+  cursor: pointer;
+  border: none;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.submit-comment-button:hover {
+  background-color: #ff0000;
+}
+
+@media screen and (min-width: 768px) {
+  .comment-form-container {
+    min-width: 30rem;
+  }
+}

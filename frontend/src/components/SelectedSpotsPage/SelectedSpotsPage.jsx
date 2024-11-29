@@ -1,15 +1,25 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
+import { useSelector } from "react-redux";
+import { useModal } from "../../context/Modal";
+import { FaPlus } from "react-icons/fa";
 import ImageGrid from "./SelectedSpotImageDisplay/ImageGrid";
 import "./SelectedSpotImageDisplay/ImageGrid.css";
 import GoogleMaps from "../PropertyComponents/CreateNewProperty/FormInputComponents/NewPropertyComponent/AddressInputComponents/GoogleMaps";
 import SelectedSpotInfo from "./SelectedSpotInfo/SelectedSpotInfo";
 import ReviewsMainComponent from "./SelectedSpotReviews/ReviewsMainComponent";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import AddReviewComponent from "./AddReviewComponents/AddReviewComponent";
 
 function SelectedSpotsPage() {
   const { spotId } = useParams();
   const [spot, setSpot] = useState();
   const [spotImages, setSpotImages] = useState([]);
+
+  const [review, setReview] = useState();
+
+  const user = useSelector((state) => state.session.user);
+
   useEffect(() => {
     const fetchSpot = async () => {
       const response = await fetch(`/api/spots/${spotId}`);
@@ -18,8 +28,7 @@ function SelectedSpotsPage() {
       setSpotImages(data.SpotImages || []);
     };
     fetchSpot();
-    console.log(spot);
-  }, [spotId]);
+  }, [spotId, user, review]);
 
   useEffect(() => {
     if (spotImages.length < 5) {
@@ -35,13 +44,14 @@ function SelectedSpotsPage() {
     }
   }, [spotImages]);
 
+  const closeMenu = useModal();
   const center = useMemo(
     () => (spot ? { lat: spot.lat, lng: spot.lng } : { lat: 0, lng: 0 }),
     [spot]
   );
   if (!spot) return null;
   return (
-    <section>
+    <section className="selected-spot-body-container">
       <div className="image-track">
         <ImageGrid spotImages={spotImages} />
       </div>
@@ -53,6 +63,20 @@ function SelectedSpotsPage() {
         <div className="reviews-container">
           <ReviewsMainComponent spot={spot} />
         </div>
+      </div>
+      <div className="add-review-button-container">
+        {user && user.id !== spot.ownerId ? (
+          <div className="add-review-button">
+            <OpenModalMenuItem
+              modalComponent={
+                <AddReviewComponent spot={spot} setReview={setReview} />
+              }
+              itemText="Add Review"
+              onItemClick={closeMenu}
+            />
+            <FaPlus />
+          </div>
+        ) : null}
       </div>
     </section>
   );

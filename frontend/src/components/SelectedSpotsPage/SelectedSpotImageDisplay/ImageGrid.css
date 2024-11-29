@@ -1,9 +1,21 @@
+.selected-spot-body-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
 .image-track {
   overflow-x: scroll;
   padding: 1rem;
   position: relative;
   height: 20rem;
   padding: 0rem 1rem;
+}
+
+.google-map-container {
+  max-width: 30rem;
+  padding: 1rem;
 }
 
 .image-display-container {
@@ -38,6 +50,26 @@
   border-radius: 0.5rem;
 }
 
+.add-review-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.add-review-button {
+  width: 60%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgb(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
   .image-track {
     overflow-x: hidden;
@@ -48,8 +80,30 @@
     justify-content: center;
     height: 100%;
   }
+
+  .add-review-button {
+    width: 100%;
+  }
+
+  .selected-spot-body-container {
+    align-items: center;
+  }
+
   .selected-image-container.no-image {
     height: auto;
+    padding: 1rem;
+  }
+
+  .spot-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 80rem;
+  }
+
+  .google-map-container {
+    max-width: 100%;
     padding: 1rem;
   }
 

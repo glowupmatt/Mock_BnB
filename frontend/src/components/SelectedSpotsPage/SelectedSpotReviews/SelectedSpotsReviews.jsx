@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./ReviewStyles.css";
 
 function SelectedSpotsReviews({ review }) {
   const [userReview, setUserReview] = useState();
@@ -15,15 +16,17 @@ function SelectedSpotsReviews({ review }) {
   if (!userReview) return null;
 
   return (
-    <div>
-      <div>
+    <div className="individual-review-container">
+      <div className="user-review-container">
         <img src="/review-icon.svg" className="review-icons" />
         <p>
           {userReview.firstName} {userReview.lastName}
         </p>
       </div>
-      <p>{review.stars}</p>
-      <p>{review.comment}</p>
+      <div className="review-rating-container">
+        <p>{review.stars}</p>
+        <p>{review.comment}</p>
+      </div>
     </div>
   );
 }
