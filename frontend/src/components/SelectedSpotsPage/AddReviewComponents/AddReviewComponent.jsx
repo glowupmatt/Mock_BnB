@@ -1,13 +1,30 @@
 import "./AddReviewComponents.css";
 import Input from "../../PropertyComponents/CreateNewProperty/FormInputComponents/InputComponents/Input";
 import { csrfFetch } from "../../../store/csrf";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useModal } from "../../../context/Modal";
 
 function AddReviewComponent({ spot, setReview }) {
   const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
+  const [errors, setErrors] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [errorButton, setErrorButton] = useState("");
+  const { closeModal } = useModal();
 
   const spotId = spot.id;
+
+  useEffect(() => {
+    if (comment.length > 0 && stars >= 1 && stars <= 5) {
+      setButtonDisabled(false);
+      setErrorButton("");
+    } else {
+      setButtonDisabled(true);
+      setErrorButton(
+        "Please provide a comment and a star rating between 1 and 5."
+      );
+    }
+  }, [comment, stars]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,15 +44,15 @@ function AddReviewComponent({ spot, setReview }) {
       });
       setReview(reviewBody);
       console.log("Review added");
+      closeModal();
     } catch (err) {
-      console.log(err);
+      setErrors("User already has a review.");
     }
-    console.log(comment, stars);
   }
 
   return (
     <div className="comment-form-container">
-      <p>Add a comment</p>
+      <p>How was your stay?</p>
       <form onSubmit={handleSubmit}>
         <Input
           classNameInput="input-container-top"
@@ -54,7 +71,16 @@ function AddReviewComponent({ spot, setReview }) {
           dataType="number"
           inputType="number"
         />
-        <input className="submit-comment-button" type="submit" value="Submit" />
+        {errors && <p className="error-styles">{errors}</p>}
+        <button
+          disabled={buttonDisabled}
+          className="submit-comment-button"
+          type="submit"
+          value="Submit"
+        >
+          Submit your review
+        </button>
+        {buttonDisabled && <p className="error-styles">{errorButton}</p>}
       </form>
     </div>
   );

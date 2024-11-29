@@ -324,7 +324,7 @@ router.post(
       if (existingReview) {
         // If the user already has a review, return a 500 error with the appropriate message
         return res
-          .status(500)
+          .status(400)
           .json({ message: "User already has a review for this spot" });
       }
 

@@ -6,6 +6,12 @@
   margin-top: 1rem;
 }
 
+.ratings-details {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 .user-review-container {
   display: flex;
   gap: 1rem;
@@ -17,4 +23,15 @@
   gap: 0.5rem;
   align-items: center;
   padding: 0rem 1rem;
+}
+
+.review-span {
+  color: rgb(255, 113, 113);
+  font-weight: bold;
+}
+
+.rating-values-total {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }

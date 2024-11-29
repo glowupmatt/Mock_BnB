@@ -50,8 +50,14 @@ function SelectedSpotsPage() {
     [spot]
   );
   if (!spot) return null;
+
+  const userHasReview = spot.Reviews.some(
+    (review) => review.userId === user?.id
+  );
+
   return (
     <section className="selected-spot-body-container">
+      {user.id === spot.ownerId ? <>Edit Your Spot</> : null}
       <div className="image-track">
         <ImageGrid spotImages={spotImages} />
       </div>
@@ -65,7 +71,7 @@ function SelectedSpotsPage() {
         </div>
       </div>
       <div className="add-review-button-container">
-        {user && user.id !== spot.ownerId ? (
+        {user && user.id !== spot.ownerId && !userHasReview ? (
           <div className="add-review-button">
             <OpenModalMenuItem
               modalComponent={

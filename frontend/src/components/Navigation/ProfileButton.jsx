@@ -7,12 +7,14 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
 import SignupFormModal from "../SignupFormModal/SignupFormModal";
 import "./ProfileButton.css";
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const userId = user?.id;
 
   const toggleMenu = (e) => {
     e.stopPropagation();
@@ -65,6 +67,12 @@ function ProfileButton({ user }) {
               </li>
               <li>{user.username}</li>
               <li>{user.email}</li>
+              <NavLink
+                to={`/${userId}/new-property/`}
+                className="host-new-property-link"
+              >
+                Host A New Property
+              </NavLink>
               <li>
                 <button className="profile-logout-button" onClick={logout}>
                   Log Out

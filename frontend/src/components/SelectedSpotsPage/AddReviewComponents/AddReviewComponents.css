@@ -17,6 +17,10 @@
   background-color: #ff0000;
 }
 
+.error-styles {
+  color: red;
+}
+
 @media screen and (min-width: 768px) {
   .comment-form-container {
     min-width: 30rem;

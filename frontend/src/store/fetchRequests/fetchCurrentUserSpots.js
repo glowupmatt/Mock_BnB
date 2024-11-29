@@ -19,7 +19,7 @@ const fetchDataFailure = (error) => ({
 export const getUserProperties = () => async (dispatch) => {
   dispatch(fetchDataRequest());
   try {
-    const response = await fetch(`/api/user/spots`);
+    const response = await fetch(`/api/user/properties`);
     const data = await response.json();
     dispatch(fetchDataSuccess(data));
     return response;

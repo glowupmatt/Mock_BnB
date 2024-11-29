@@ -80,7 +80,6 @@ function NewPropertyComponent({ setNewProperty }) {
 
       const data = await response.json();
       setNewProperty(data);
-      console.log(data);
     }
     try {
       createProperty();

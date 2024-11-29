@@ -11,7 +11,6 @@ function Input({
   inputType = "input",
   dataType = "text",
 }) {
-  console.log("input", value);
   if (inputType === "textarea") {
     return (
       <div className={`${classNameInput} input-container`}>
@@ -22,6 +21,7 @@ function Input({
           disabled={disableCtl}
           className="input"
           id={label}
+          minLength={30}
           value={value}
           onChange={(e) => {
             setValue(() => {
