@@ -11,7 +11,7 @@ function ListAllProperties() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.session.user);
   const { closeMenu } = useModal();
-  const [userProperties, setUserProperties] = useState([]);
+  const [userProperties, setUserProperties] = useState();
   const [change, setChange] = useState(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function ListAllProperties() {
   return (
     <>
       <p className="manage-spot-title">Manage Spots</p>
-      {userProperties.length === 0 && (
+      {!userProperties === 0 && (
         <Link to={`/${user.id}/new-property`}>Click to add a new Spot</Link>
       )}
       <div className="spots-parent-container">
