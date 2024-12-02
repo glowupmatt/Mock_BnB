@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "./ReviewStyles.css";
 import { useSelector } from "react-redux";
-import AddReviewComponent from "../AddReviewComponents/AddReviewComponent";
+import EditReview from "../EditReviewComponent/EditReview";
 import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
 import { useModal } from "../../../context/Modal";
 import { FaStar } from "react-icons/fa";
 
-function SelectedSpotsReviews({ review, spot, changed, setChanged }) {
+function SelectedSpotsReviews({ review, changed, setChanged }) {
   const [userReview, setUserReview] = useState();
   const [ownedReview, setOwnedReview] = useState();
   const user = useSelector((state) => state.session.user);
@@ -44,11 +44,9 @@ function SelectedSpotsReviews({ review, spot, changed, setChanged }) {
       {review.userId === user.id && (
         <OpenModalMenuItem
           modalComponent={
-            <AddReviewComponent
-              spot={spot}
+            <EditReview
               userReview={ownedReview}
               setReview={setOwnedReview}
-              update={true}
               setChanged={setChanged}
             />
           }

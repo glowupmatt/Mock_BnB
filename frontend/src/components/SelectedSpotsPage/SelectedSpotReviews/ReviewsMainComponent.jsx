@@ -29,7 +29,6 @@ function ReviewsMainComponent({ spot, setChanged = { setChanged } }) {
             <SelectedSpotsReviews
               key={review.id}
               review={review}
-              spot={spot}
               setChanged={setChanged}
             />
           );
