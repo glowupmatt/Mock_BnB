@@ -64,7 +64,7 @@ function SelectedSpotsPage() {
       </div>
       <div className="spot-details-container">
         <SelectedSpotInfo spot={spot} />
-        {spot && spot.lat && spot.lng ? (
+        {spot && spot.lat && spot.lng && center ? (
           <div className="google-map-container">
             <GoogleMaps lat={spot.lat} lng={spot.lng} center={center} />
           </div>
