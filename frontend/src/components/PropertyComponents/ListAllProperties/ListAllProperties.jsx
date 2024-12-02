@@ -31,6 +31,7 @@ function ListAllProperties() {
     fetchData();
   }, [user, change]);
 
+  if (!user) return null;
   return (
     <>
       <p className="manage-spot-title">Manage Spots</p>
