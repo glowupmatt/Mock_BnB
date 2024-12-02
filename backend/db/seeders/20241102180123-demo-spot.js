@@ -38,7 +38,7 @@ module.exports = {
         description: "A modern loft in downtown Los Angeles.",
         price: 150,
         previewImage:
-          "src=https://a0.muscache.com/im/pictures/prohost-api/Hosting-849168940403272858/original/0acf305b-c5de-4faa-88cd-bfa62e6b4add.jpeg?im_w=720",
+          "https://a0.muscache.com/im/pictures/prohost-api/Hosting-849168940403272858/original/0acf305b-c5de-4faa-88cd-bfa62e6b4add.jpeg?im_w=720",
       },
       {
         ownerId: 3,
