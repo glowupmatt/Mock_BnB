@@ -37,7 +37,7 @@ function ListAllProperties() {
       <p className="manage-spot-title">Manage Spots</p>
 
       <Link to={`/${user.id}/new-property`}>Click to add a new Spot</Link>
-      {userProperties && (
+      {userProperties && userProperties.length > 0 ? (
         <div className="spots-parent-container">
           {userProperties.map((property) => (
             <div key={property.id} className="update-delete-card-container">
@@ -62,6 +62,8 @@ function ListAllProperties() {
             </div>
           ))}
         </div>
+      ) : (
+        <p>No properties found.</p>
       )}
     </>
   );
