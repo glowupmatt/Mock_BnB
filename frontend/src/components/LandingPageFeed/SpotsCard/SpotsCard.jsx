@@ -43,7 +43,6 @@ function SpotsCard({ spot }) {
   }, [spot]);
 
   if (!spot) return <>No Current Spot</>;
-
   return (
     <Link
       to={`/spots/${spot.id}`}
@@ -63,9 +62,9 @@ function SpotsCard({ spot }) {
             </h3>
             <p className="spot-price">${spot.price} night</p>
           </div>
-          {starAverage ? (
+          {spot ? (
             <div className="star-rating-container">
-              {isNaN(starAverage) ? (
+              {spot.reviews.length === 0 ? (
                 <>
                   <FaRegNewspaper className="new-icon" />
                   <p>New Spot</p>

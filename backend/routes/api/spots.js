@@ -635,14 +635,27 @@ router.get("/", queryValidationRules, async (req, res) => {
       const spotReviews = reviews
         .filter((review) => review.spotId === spot.id)
         .map((review) => review.toJSON());
+
+      const totalStars = spotReviews.reduce(
+        (sum, review) => sum + review.stars,
+        0
+      );
+      const avgRating =
+        spotReviews.length > 0
+          ? (totalStars / spotReviews.length).toFixed(2)
+          : NaN;
+
+      // Calculate the number of reviews
+      const numReviews = spotReviews.length;
+
       return {
-        ...spot.dataValues,
-        avgRating: parseFloat(spot.dataValues.avgRating).toFixed(2) || 0,
+        ...spot.toJSON(),
+        avgRating: isNaN(avgRating) ? NaN : avgRating, // Handle NaN case
+        numReviews,
         reviews: spotReviews,
       };
     });
 
-    console.log(spotsWithReviews, "spotsWithReviews");
     return res.json({
       Spots: spotsWithReviews,
       page,
