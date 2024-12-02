@@ -46,8 +46,12 @@ function SelectedSpotsPage() {
   }, [spotImages]);
 
   const closeMenu = useModal();
+  console.log(spot);
   const center = useMemo(
-    () => (spot ? { lat: spot.lat, lng: spot.lng } : { lat: 0, lng: 0 }),
+    () =>
+      spot && spot.lat && spot.lng
+        ? { lat: spot.lat, lng: spot.lng }
+        : { lat: 0, lng: 0 },
     [spot]
   );
   if (!spot) return null;
