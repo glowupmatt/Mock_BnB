@@ -51,6 +51,7 @@ function SelectedSpotsPage() {
     [spot]
   );
   if (!spot) return null;
+  const ownerId = spot.ownerId;
 
   const userHasReview = spot.Reviews.some(
     (review) => review.userId === user?.id
@@ -63,7 +64,7 @@ function SelectedSpotsPage() {
       </div>
       <div className="spot-details-container">
         <SelectedSpotInfo spot={spot} />
-        {spot ? (
+        {spot && spot.lat && spot.lng ? (
           <div className="google-map-container">
             <GoogleMaps lat={spot.lat} lng={spot.lng} center={center} />
           </div>
@@ -75,7 +76,7 @@ function SelectedSpotsPage() {
         </div>
       </div>
       <div className="add-review-button-container">
-        {user && user.id !== spot.ownerId && !userHasReview ? (
+        {user && user.id !== ownerId && !userHasReview ? (
           <div className="add-review-button">
             <OpenModalMenuItem
               modalComponent={
