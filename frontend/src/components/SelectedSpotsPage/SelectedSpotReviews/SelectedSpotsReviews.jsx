@@ -41,7 +41,7 @@ function SelectedSpotsReviews({ review, changed, setChanged }) {
         </p>
         <p>{review.comment}</p>
       </div>
-      {review.userId === user.id && (
+      {user && review.userId === user.id && (
         <OpenModalMenuItem
           modalComponent={
             <EditReview
