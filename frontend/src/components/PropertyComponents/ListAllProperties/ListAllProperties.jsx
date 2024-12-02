@@ -35,33 +35,34 @@ function ListAllProperties() {
   return (
     <>
       <p className="manage-spot-title">Manage Spots</p>
-      {!userProperties === 0 && (
-        <Link to={`/${user.id}/new-property`}>Click to add a new Spot</Link>
-      )}
-      <div className="spots-parent-container">
-        {userProperties.map((property) => (
-          <div key={property.id} className="update-delete-card-container">
-            <SpotsCard key={property.id} spot={property} />
-            <div className="button-container">
-              <Link to={`/${property.id}/edit`} className="button-class">
-                Update
-              </Link>
-              <div className="delete-modal-styles">
-                <OpenModalMenuItem
-                  onModalClose={closeMenu}
-                  modalComponent={
-                    <DeleteProperty
-                      propertyId={property.id}
-                      setChange={setChange}
-                    />
-                  }
-                  itemText="Delete"
-                />
+
+      <Link to={`/${user.id}/new-property`}>Click to add a new Spot</Link>
+      {userProperties && (
+        <div className="spots-parent-container">
+          {userProperties.map((property) => (
+            <div key={property.id} className="update-delete-card-container">
+              <SpotsCard key={property.id} spot={property} />
+              <div className="button-container">
+                <Link to={`/${property.id}/edit`} className="button-class">
+                  Update
+                </Link>
+                <div className="delete-modal-styles">
+                  <OpenModalMenuItem
+                    onModalClose={closeMenu}
+                    modalComponent={
+                      <DeleteProperty
+                        propertyId={property.id}
+                        setChange={setChange}
+                      />
+                    }
+                    itemText="Delete"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }
