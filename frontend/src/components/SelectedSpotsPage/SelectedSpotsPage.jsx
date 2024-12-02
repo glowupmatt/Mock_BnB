@@ -7,7 +7,7 @@ import ImageGrid from "./SelectedSpotImageDisplay/ImageGrid";
 import "./SelectedSpotImageDisplay/ImageGrid.css";
 import GoogleMaps from "../PropertyComponents/CreateNewProperty/FormInputComponents/NewPropertyComponent/AddressInputComponents/GoogleMaps";
 import SelectedSpotInfo from "./SelectedSpotInfo/SelectedSpotInfo";
-import ReviewsMainComponent from "./SelectedSpotReviews/ReviewsMainComponent";
+// import ReviewsMainComponent from "./SelectedSpotReviews/ReviewsMainComponent";
 // import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 // import AddReviewComponent from "./AddReviewComponents/AddReviewComponent";
 
@@ -15,7 +15,7 @@ function SelectedSpotsPage() {
   const { spotId } = useParams();
   const [spot, setSpot] = useState();
   const [spotImages, setSpotImages] = useState([]);
-  const [changed, setChanged] = useState(false);
+  // const [changed, setChanged] = useState(false);
 
   // const [review, setReview] = useState();
 
@@ -29,7 +29,7 @@ function SelectedSpotsPage() {
       setSpotImages(data.SpotImages || []);
     };
     fetchSpot();
-  }, [spotId, user, changed]);
+  }, [spotId, user]);
 
   useEffect(() => {
     if (spotImages.length < 5) {
