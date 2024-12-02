@@ -632,7 +632,9 @@ router.get("/", queryValidationRules, async (req, res) => {
     });
 
     const spotsWithReviews = spots.map((spot) => {
-      const spotReviews = reviews.filter((review) => review.spotId === spot.id);
+      const spotReviews = reviews
+        .filter((review) => review.spotId === spot.id)
+        .map((review) => review.toJSON());
       return {
         ...spot.dataValues,
         avgRating: parseFloat(spot.dataValues.avgRating).toFixed(2) || 0,
@@ -640,6 +642,7 @@ router.get("/", queryValidationRules, async (req, res) => {
       };
     });
 
+    console.log(spotsWithReviews, "spotsWithReviews");
     return res.json({
       Spots: spotsWithReviews,
       page,
