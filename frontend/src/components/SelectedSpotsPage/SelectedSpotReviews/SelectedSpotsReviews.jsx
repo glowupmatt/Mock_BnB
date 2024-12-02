@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import "./ReviewStyles.css";
+import { useSelector } from "react-redux";
+import AddReviewComponent from "../AddReviewComponents/AddReviewComponent";
+import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
+import { useModal } from "../../../context/Modal";
+import { FaStar } from "react-icons/fa";
 
-function SelectedSpotsReviews({ review }) {
+function SelectedSpotsReviews({ review, spot, changed, setChanged }) {
   const [userReview, setUserReview] = useState();
+  const [ownedReview, setOwnedReview] = useState();
+  const user = useSelector((state) => state.session.user);
+  const { closeMenu } = useModal();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -11,7 +19,11 @@ function SelectedSpotsReviews({ review }) {
       setUserReview(data);
     };
     fetchUser();
-  }, [review.userId]);
+
+    if (review.userId === user.id) {
+      setOwnedReview(review);
+    }
+  }, [review.userId, review, user.id, changed]);
 
   if (!userReview) return null;
 
@@ -24,9 +36,26 @@ function SelectedSpotsReviews({ review }) {
         </p>
       </div>
       <div className="review-rating-container">
-        <p>{review.stars}</p>
+        <p>
+          {review.stars} <FaStar />
+        </p>
         <p>{review.comment}</p>
       </div>
+      {review.userId === user.id && (
+        <OpenModalMenuItem
+          modalComponent={
+            <AddReviewComponent
+              spot={spot}
+              userReview={ownedReview}
+              setReview={setOwnedReview}
+              update={true}
+              setChanged={setChanged}
+            />
+          }
+          itemText="Edit Review"
+          onItemClick={closeMenu}
+        />
+      )}
     </div>
   );
 }

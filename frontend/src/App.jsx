@@ -7,6 +7,7 @@ import LandingPageFeed from "./components/LandingPageFeed/LandingPageFeed";
 import CreateNewProperty from "./components/PropertyComponents/CreateNewProperty/CreateNewProperty";
 import ListAllProperties from "./components/PropertyComponents/ListAllProperties/ListAllProperties";
 import SelectedSpotsPage from "./components/SelectedSpotsPage/SelectedSpotsPage";
+import UpdateCurrentProperty from "./components/PropertyComponents/ListAllProperties/updatePropertyForm/UpdateCurrentProperty";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/:userId/current-properties/",
         element: <ListAllProperties />,
+      },
+      {
+        path: "/:propertyId/edit",
+        element: <UpdateCurrentProperty />,
       },
       {
         path: "/:userId/new-property",

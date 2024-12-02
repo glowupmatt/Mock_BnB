@@ -99,13 +99,15 @@ function PropertyDescription({
         ) : (
           <>
             {error && <p>{error}</p>}
-            <div className="property-image-container">
-              <img
-                className="property-image"
-                src={propertyImage}
-                alt="property"
-              />
-            </div>
+            <UploadWidget onUpload={handleOnUpload}>
+              <div className="property-image-container">
+                <img
+                  className="property-image"
+                  src={propertyImage}
+                  alt="property"
+                />
+              </div>
+            </UploadWidget>
           </>
         )}
       </div>

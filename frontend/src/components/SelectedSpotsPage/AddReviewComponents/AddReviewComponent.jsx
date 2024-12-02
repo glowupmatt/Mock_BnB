@@ -4,9 +4,16 @@ import { csrfFetch } from "../../../store/csrf";
 import { useEffect, useState } from "react";
 import { useModal } from "../../../context/Modal";
 
-function AddReviewComponent({ spot, setReview }) {
-  const [comment, setComment] = useState("");
-  const [stars, setStars] = useState(0);
+function AddReviewComponent({
+  spot,
+  setReview,
+  userReview,
+  update = false,
+  setChanged,
+}) {
+  console.log(userReview);
+  const [comment, setComment] = useState(userReview ? userReview.comment : "");
+  const [stars, setStars] = useState(userReview ? userReview.stars : "");
   const [errors, setErrors] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [errorButton, setErrorButton] = useState("");
@@ -34,7 +41,7 @@ function AddReviewComponent({ spot, setReview }) {
       stars,
     };
 
-    try {
+    const postComment = async () => {
       await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: "POST",
         headers: {
@@ -42,11 +49,47 @@ function AddReviewComponent({ spot, setReview }) {
         },
         body: JSON.stringify(reviewBody),
       });
+    };
+
+    const updateComment = async () => {
+      try {
+        await csrfFetch(`/api/reviews/${userReview.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reviewBody),
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    try {
+      if (update) {
+        await updateComment();
+        setChanged((prev) => !prev);
+        console.log("Review updated");
+      } else {
+        await postComment();
+        console.log("Review added");
+      }
       setReview(reviewBody);
-      console.log("Review added");
       closeModal();
     } catch (err) {
       setErrors("User already has a review.");
+    }
+  }
+
+  async function handleDelete() {
+    try {
+      await csrfFetch(`/api/reviews/${userReview.id}`, {
+        method: "DELETE",
+      });
+      setReview(null);
+      setChanged((prev) => !prev);
+      closeModal();
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -80,6 +123,15 @@ function AddReviewComponent({ spot, setReview }) {
         >
           Submit your review
         </button>
+        {update && (
+          <button
+            onClick={handleDelete}
+            className="submit-comment-button"
+            type="button"
+          >
+            Delete Review
+          </button>
+        )}
         {buttonDisabled && <p className="error-styles">{errorButton}</p>}
       </form>
     </div>

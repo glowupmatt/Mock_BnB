@@ -15,6 +15,7 @@ function SelectedSpotsPage() {
   const { spotId } = useParams();
   const [spot, setSpot] = useState();
   const [spotImages, setSpotImages] = useState([]);
+  const [changed, setChanged] = useState(false);
 
   const [review, setReview] = useState();
 
@@ -28,7 +29,7 @@ function SelectedSpotsPage() {
       setSpotImages(data.SpotImages || []);
     };
     fetchSpot();
-  }, [spotId, user, review]);
+  }, [spotId, user, review, changed]);
 
   useEffect(() => {
     if (spotImages.length < 5) {
@@ -57,7 +58,6 @@ function SelectedSpotsPage() {
 
   return (
     <section className="selected-spot-body-container">
-      {user.id === spot.ownerId ? <>Edit Your Spot</> : null}
       <div className="image-track">
         <ImageGrid spotImages={spotImages} />
       </div>
@@ -67,7 +67,7 @@ function SelectedSpotsPage() {
           <GoogleMaps lat={spot.lat} lng={spot.lng} center={center} />
         </div>
         <div className="reviews-container">
-          <ReviewsMainComponent spot={spot} />
+          <ReviewsMainComponent spot={spot} setChanged={setChanged} />
         </div>
       </div>
       <div className="add-review-button-container">

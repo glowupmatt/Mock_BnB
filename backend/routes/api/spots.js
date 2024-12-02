@@ -394,6 +394,8 @@ router.get("/:spotId", async (req, res, next) => {
         "country",
         "lat",
         "lng",
+        "zipCode",
+        "previewImage",
         "name",
         "description",
         "price",
@@ -466,6 +468,7 @@ router.put(
       country,
       lat,
       lng,
+      zipCode,
       name,
       description,
       price,
@@ -489,6 +492,7 @@ router.put(
         country,
         lat,
         lng,
+        zipCode,
         name,
         description,
         price,
@@ -546,6 +550,7 @@ router.post("/", spotValidationRules, requireAuth, async (req, res, next) => {
     description,
     price,
     previewImage,
+    zipCode,
   } = req.body;
   try {
     const spot = await Spot.create({
@@ -560,6 +565,7 @@ router.post("/", spotValidationRules, requireAuth, async (req, res, next) => {
       description,
       price,
       previewImage,
+      zipCode,
     });
 
     return res.status(201).json(spot);

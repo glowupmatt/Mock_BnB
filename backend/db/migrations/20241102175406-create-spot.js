@@ -44,6 +44,10 @@ module.exports = {
           type: Sequelize.DECIMAL,
           allowNull: false,
         },
+        zipCode: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
         name: {
           type: Sequelize.STRING(256),
           allowNull: false,

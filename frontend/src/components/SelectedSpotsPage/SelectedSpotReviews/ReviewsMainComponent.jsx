@@ -1,10 +1,10 @@
 import SelectedSpotsReviews from "./SelectedSpotsReviews";
 import { FaStar } from "react-icons/fa";
 
-function ReviewsMainComponent({ spot }) {
+function ReviewsMainComponent({ spot, setChanged = { setChanged } }) {
   if (!spot) return null;
   if (spot.Reviews.length === 0) return "No Reviews";
-  console.log(spot);
+
   const starAverage = spot.avgStarRating
     ? spot.avgStarRating.toFixed(2)
     : "NEW PROPERTY";
@@ -25,7 +25,14 @@ function ReviewsMainComponent({ spot }) {
       </div>
       <div>
         {spot.Reviews.map((review) => {
-          return <SelectedSpotsReviews key={review.id} review={review} />;
+          return (
+            <SelectedSpotsReviews
+              key={review.id}
+              review={review}
+              spot={spot}
+              setChanged={setChanged}
+            />
+          );
         })}
       </div>
     </div>

@@ -44,7 +44,6 @@ function SpotsCard({ spot }) {
 
   if (!spot) return null;
 
-  console.log(spot);
   return (
     <Link
       to={`/spots/${spot.id}`}
