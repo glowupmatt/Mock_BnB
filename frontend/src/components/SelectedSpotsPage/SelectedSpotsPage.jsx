@@ -66,9 +66,9 @@ function SelectedSpotsPage() {
         <div className="google-map-container">
           <GoogleMaps lat={spot.lat} lng={spot.lng} center={center} />
         </div>
-        <div className="reviews-container">
+        {/* <div className="reviews-container">
           <ReviewsMainComponent spot={spot} setChanged={setChanged} />
-        </div>
+        </div> */}
       </div>
       <div className="add-review-button-container">
         {user && user.id !== spot.ownerId && !userHasReview ? (
