@@ -440,9 +440,10 @@ router.get("/:spotId", async (req, res, next) => {
 
     // calcuate the number of reivews
     const numReviews = reviews.length;
+    const spotJSON = spot.toJSON();
 
     return res.json({
-      ...spot.toJSON(),
+      ...spotJSON,
       numReviews,
       avgStarRating,
     });
