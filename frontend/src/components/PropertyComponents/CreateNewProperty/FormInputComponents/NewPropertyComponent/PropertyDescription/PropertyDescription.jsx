@@ -46,15 +46,16 @@ function PropertyDescription({
               disableCtl={false}
               classNameInput="input-container-top"
               label="property-name"
-              title="Property Name"
+              title="Create a title for your property"
               value={propertyName}
               setValue={setPropertyName}
             />
             <Input
               disableCtl={false}
+              inputType="textarea"
               classNameInput="input-container-mid"
               label="property-description"
-              title="Property Description"
+              title="Catch guests' attention with description title that highlights what makes your place special"
               value={propertyDescription}
               setValue={setPropertyDescription}
             />
@@ -62,7 +63,7 @@ function PropertyDescription({
               disableCtl={false}
               classNameInput="input-container-mid"
               label="property-price"
-              title="Property Price"
+              title="Property Price in USD"
               value={propertyPrice}
               setValue={setPropertyPrice}
             />
@@ -74,7 +75,7 @@ function PropertyDescription({
                 disableCtl={true}
                 classNameInput="input-container-bottom"
                 label="property-image"
-                title="Property Image"
+                title="Property Image Main Image"
                 value={propertyImage}
                 setValue={setPropertyImage}
               />
@@ -98,13 +99,15 @@ function PropertyDescription({
         ) : (
           <>
             {error && <p>{error}</p>}
-            <div className="property-image-container">
-              <img
-                className="property-image"
-                src={propertyImage}
-                alt="property"
-              />
-            </div>
+            <UploadWidget onUpload={handleOnUpload}>
+              <div className="property-image-container">
+                <img
+                  className="property-image"
+                  src={propertyImage}
+                  alt="property"
+                />
+              </div>
+            </UploadWidget>
           </>
         )}
       </div>

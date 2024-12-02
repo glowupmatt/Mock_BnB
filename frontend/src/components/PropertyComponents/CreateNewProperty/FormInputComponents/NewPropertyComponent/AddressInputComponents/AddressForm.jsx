@@ -5,7 +5,6 @@ import useLocationHook from "../../../../../../hooks/useLocationHook";
 import Input from "../../InputComponents/Input";
 const AddressForm = ({
   street,
-
   setStreet,
   city,
   setCity,

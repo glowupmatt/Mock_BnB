@@ -7,6 +7,7 @@ import { FaRegNewspaper } from "react-icons/fa";
 function SpotsCard({ spot }) {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [starAverage, setStarAverage] = useState(null);
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -33,8 +34,15 @@ function SpotsCard({ spot }) {
       </div>
     );
   };
+  useEffect(() => {
+    if (spot && spot.avgRating !== undefined) {
+      setStarAverage(spot.avgRating);
+    } else {
+      setStarAverage(NaN);
+    }
+  }, [spot]);
 
-  const starAverage = spot.avgRating;
+  if (!spot) return null;
 
   return (
     <Link
@@ -55,19 +63,21 @@ function SpotsCard({ spot }) {
             </h3>
             <p className="spot-price">${spot.price} night</p>
           </div>
-          <div className="star-rating-container">
-            {isNaN(starAverage) ? (
-              <>
-                <FaRegNewspaper className="new-icon" />
-                <p>New Spot</p>
-              </>
-            ) : (
-              <>
-                <FaStar className="star-icon" />
-                <p>{starAverage}</p>
-              </>
-            )}
-          </div>
+          {starAverage ? (
+            <div className="star-rating-container">
+              {isNaN(starAverage) ? (
+                <>
+                  <FaRegNewspaper className="new-icon" />
+                  <p>New Spot</p>
+                </>
+              ) : (
+                <>
+                  <FaStar className="star-icon" />
+                  <p>{starAverage}</p>
+                </>
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
     </Link>

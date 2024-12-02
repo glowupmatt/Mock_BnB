@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use("/bookings", bookingsRouter);
 
-router.get("/spots", async (req, res) => {
+router.get("/properties", async (req, res) => {
   const { user } = req;
   if (!user) {
     return res.status(401).json({ message: "Unauthorized" });

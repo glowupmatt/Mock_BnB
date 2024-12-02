@@ -1,15 +1,25 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { csrfFetch } from "../../../../..//store/csrf";
+import { useNavigate } from "react-router-dom";
 import AddressForm from "./AddressInputComponents/AddressForm";
 import PropertyDescription from "./PropertyDescription/PropertyDescription";
 import PrevPageButton from "../FormButtons/PrevPageButton";
 import NextPageButton from "../FormButtons/NextPageButton";
-import { addPageNumber } from "../../../../../store/FormPageNumber/pageNumberReducer";
+import {
+  addPageNumber,
+  resetPageNumber,
+} from "../../../../../store/FormPageNumber/pageNumberReducer";
 import "../../CreateNewProperty.css";
 
-function NewPropertyComponent({ setNewProperty }) {
+function NewPropertyComponent({
+  setNewProperty,
+  updateProperty,
+  setUpdateProperty,
+  update = false,
+}) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.session.user);
 
   const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
@@ -17,20 +27,31 @@ function NewPropertyComponent({ setNewProperty }) {
   const [submitDisabled, setSubmitDisabled] = useState(true);
 
   //ADDRESS FORM
-  const [street, setStreet] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [country, setCountry] = useState("United States");
-  const [lat, setLat] = useState(47.5879077);
-  const [lng, setLng] = useState(-122.037603);
+  const [street, setStreet] = useState(update ? updateProperty.address : "");
+  const [city, setCity] = useState(update ? updateProperty.city : "");
+  const [state, setState] = useState(update ? updateProperty.state : "");
+  const [zipCode, setZipCode] = useState(update ? updateProperty.zipCode : "");
+  const [country, setCountry] = useState(
+    update ? updateProperty.country : "United States"
+  );
+  const [lat, setLat] = useState(update ? updateProperty.lat : 37.422169);
+  const [lng, setLng] = useState(update ? updateProperty.lng : -122.0840575);
 
   // PROPERTY FORM
-  const [propertyName, setPropertyName] = useState("");
-  const [propertyDescription, setPropertyDescription] = useState("");
-  const [propertyPrice, setPropertyPrice] = useState("");
-  const [propertyImage, setPropertyImage] = useState("");
+  const [propertyName, setPropertyName] = useState(
+    update ? updateProperty.name : ""
+  );
+  const [propertyDescription, setPropertyDescription] = useState(
+    update ? updateProperty.description : ""
+  );
+  const [propertyPrice, setPropertyPrice] = useState(
+    update ? updateProperty.price : ""
+  );
+  const [propertyImage, setPropertyImage] = useState(
+    update ? updateProperty.previewImage : ""
+  );
 
+  const propertyId = update ? updateProperty.id : "";
   useEffect(() => {
     if (
       propertyName === "" ||
@@ -63,6 +84,7 @@ function NewPropertyComponent({ setNewProperty }) {
       country,
       lat,
       lng,
+      zipCode,
       name: propertyName,
       description: propertyDescription,
       price: propertyPrice,
@@ -80,13 +102,33 @@ function NewPropertyComponent({ setNewProperty }) {
 
       const data = await response.json();
       setNewProperty(data);
-      console.log(data);
+    }
+
+    async function updateProperty() {
+      const response = await csrfFetch(`/api/spots/${propertyId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(property),
+      });
+
+      const data = await response.json();
+      setUpdateProperty(data);
     }
     try {
-      createProperty();
+      if (update) {
+        updateProperty();
+      } else {
+        createProperty();
+      }
     } catch (error) {
       console.log(error);
     } finally {
+      if (update) {
+        dispatch(resetPageNumber());
+        navigate(`/spots/${propertyId}`);
+      }
       dispatch(addPageNumber(pageNumber));
     }
   };

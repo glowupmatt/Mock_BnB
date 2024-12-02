@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { csrfFetch } from "../../../../store/csrf";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PropertyImageUpload from "../FormInputComponents/PropertyImageUpload/PropertyImageUpload";
 import PrevPageButton from "../FormInputComponents/FormButtons/PrevPageButton";
+import { resetPageNumber } from "../../../../store/FormPageNumber/pageNumberReducer";
 
 function AddMorePhotosForm({ newProperty, setNewProperty }) {
   const navigate = useNavigate();
   const importedPhotos = useSelector((state) => state.uploadImage.photoList);
   const [uploadedPhotosButton, setUploadedPhotosButton] = useState(true);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (importedPhotos.length >= 5) {
       setUploadedPhotosButton(false);
@@ -43,6 +44,7 @@ function AddMorePhotosForm({ newProperty, setNewProperty }) {
         console.log(error);
       } finally {
         setNewProperty({});
+        dispatch(resetPageNumber());
         navigate(`/spots/${propertyId}`);
       }
     });
