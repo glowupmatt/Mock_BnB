@@ -13,7 +13,7 @@ function GoogleMaps({ lat, lng, center }) {
           gestureHandling={"none"}
           disableDefaultUI={true}
         >
-          <AdvancedMarker position={{ lat: lat, lng: lng }} />
+          <AdvancedMarker position={{ lat: Number(lat), lng: Number(lng) }} />
         </Map>
       </div>
     </APIProvider>

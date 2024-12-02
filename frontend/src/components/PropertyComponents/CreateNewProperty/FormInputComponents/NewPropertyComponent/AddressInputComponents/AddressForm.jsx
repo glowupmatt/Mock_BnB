@@ -36,7 +36,7 @@ const AddressForm = ({
         Share The Address Of Your Property
       </h2>
       <div className="address-info-container">
-        <GoogleMaps lat={lat} lng={lng} center={center} />
+        <GoogleMaps lat={Number(lat)} lng={Number(lng)} center={center} />
         <div className="address-form">
           <Input
             classNameInput="street-name input-container-top"
