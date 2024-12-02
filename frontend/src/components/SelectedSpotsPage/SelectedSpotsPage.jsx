@@ -70,7 +70,11 @@ function SelectedSpotsPage() {
         <SelectedSpotInfo spot={spot} />
         {spot && spot.lat && spot.lng && center ? (
           <div className="google-map-container">
-            <GoogleMaps lat={spot.lat} lng={spot.lng} center={center} />
+            <GoogleMaps
+              lat={Number(spot.lat)}
+              lng={Number(spot.lng)}
+              center={center}
+            />
           </div>
         ) : (
           <>NO MAPPPPP!!!!!!</>
