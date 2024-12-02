@@ -62,7 +62,7 @@ function SpotsCard({ spot }) {
             </h3>
             <p className="spot-price">${spot.price} night</p>
           </div>
-          {spot ? (
+          {spot && spot.reviews ? (
             <div className="star-rating-container">
               {spot.reviews.length === 0 ? (
                 <>
