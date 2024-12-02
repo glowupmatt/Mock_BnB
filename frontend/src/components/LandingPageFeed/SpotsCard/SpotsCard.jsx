@@ -7,7 +7,7 @@ import { FaRegNewspaper } from "react-icons/fa";
 function SpotsCard({ spot }) {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [starAverage, setStarAverage] = useState(null);
+  const [starAverage, setStarAverage] = useState();
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -42,7 +42,7 @@ function SpotsCard({ spot }) {
     }
   }, [spot]);
 
-  if (!spot) return null;
+  if (!spot) return <>No Current Spot</>;
 
   return (
     <Link

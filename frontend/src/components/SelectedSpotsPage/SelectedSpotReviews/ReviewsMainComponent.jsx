@@ -2,7 +2,7 @@ import SelectedSpotsReviews from "./SelectedSpotsReviews";
 import { FaStar } from "react-icons/fa";
 
 function ReviewsMainComponent({ spot, setChanged = { setChanged } }) {
-  if (!spot) return null;
+  if (!spot) return <>No Current Spot</>;
   if (spot.Reviews.length === 0) return "No Reviews";
 
   const starAverage = spot.avgStarRating

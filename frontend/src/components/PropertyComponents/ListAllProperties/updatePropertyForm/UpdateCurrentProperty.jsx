@@ -13,7 +13,7 @@ function UpdateCurrentProperty() {
     }
     fetchProperty();
   }, [propertyId]);
-  if (!property) return null;
+  if (!property) return <>No Current Property</>;
   console.log({ ...property });
   return (
     <div>

@@ -8,7 +8,7 @@ import UploadImageDisplay from "./UploadImageDisplay";
 
 function ImageFormUpload() {
   // eslint-disable-next-line no-unused-vars
-  const [error, updateError] = useState(null);
+  const [error, updateError] = useState();
 
   const dispatch = useDispatch();
   const handleOnUpload = (error, result, widget) => {
