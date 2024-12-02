@@ -28,7 +28,10 @@ const AddressForm = ({
     }
   }, [street, city, state, zipCode, setIsDisabled]);
 
-  const center = useMemo(() => ({ lat: lat, lng: lng }), [lat, lng]);
+  const center = useMemo(
+    () => ({ lat: Number(lat), lng: Number(lng) }),
+    [lat, lng]
+  );
   useLocationHook(street, city, state, zipCode, setLat, setLng);
   return (
     <section className="address-form-container">
