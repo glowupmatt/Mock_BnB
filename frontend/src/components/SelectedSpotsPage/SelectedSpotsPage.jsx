@@ -31,19 +31,19 @@ function SelectedSpotsPage() {
     fetchSpot();
   }, [spotId, user]);
 
-  useEffect(() => {
-    if (spotImages.length < 5) {
-      const additionalImages = Array(5 - spotImages.length).fill({
-        url: "/no-image-avaliable-icon.svg",
-      });
-      setSpotImages((prev) => [...prev, ...additionalImages]);
-    } else if (spotImages.length > 5) {
-      const filteredImages = spotImages.filter(
-        (image) => image.url !== "/no-image-avaliable-icon.svg"
-      );
-      setSpotImages(filteredImages.slice(0, 5));
-    }
-  }, [spotImages]);
+  // useEffect(() => {
+  //   if (spotImages.length < 5) {
+  //     const additionalImages = Array(5 - spotImages.length).fill({
+  //       url: "/no-image-avaliable-icon.svg",
+  //     });
+  //     setSpotImages((prev) => [...prev, ...additionalImages]);
+  //   } else if (spotImages.length > 5) {
+  //     const filteredImages = spotImages.filter(
+  //       (image) => image.url !== "/no-image-avaliable-icon.svg"
+  //     );
+  //     setSpotImages(filteredImages.slice(0, 5));
+  //   }
+  // }, [spotImages]);
 
   // const closeMenu = useModal();
 
