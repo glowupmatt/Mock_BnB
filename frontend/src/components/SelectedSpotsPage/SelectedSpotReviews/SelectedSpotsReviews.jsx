@@ -14,16 +14,16 @@ function SelectedSpotsReviews({ review, changed, setChanged }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await fetch(`/api/users/${review.userId}`);
+      const response = await fetch(`/api/users/${review?.userId}`);
       const data = await response.json();
       setUserReview(data);
     };
     fetchUser();
 
-    if (review.userId === user.id) {
+    if (review.userId === user?.id) {
       setOwnedReview(review);
     }
-  }, [review.userId, review, user.id, changed]);
+  }, [review.userId, review, user?.id, changed]);
 
   if (!userReview || !review.userId) return null;
 
