@@ -50,7 +50,7 @@ function SelectedSpotsPage() {
   const center = useMemo(
     () =>
       spot && spot.lat && spot.lng
-        ? { lat: spot.lat, lng: spot.lng }
+        ? { lat: Number(spot.lat), lng: Number(spot.lng) }
         : { lat: 0, lng: 0 },
     [spot]
   );
