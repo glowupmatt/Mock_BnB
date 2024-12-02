@@ -25,7 +25,7 @@ function SelectedSpotsReviews({ review, changed, setChanged }) {
     }
   }, [review.userId, review, user.id, changed]);
 
-  if (!userReview) return null;
+  if (!userReview || !review.userId) return null;
 
   return (
     <div className="individual-review-container">
