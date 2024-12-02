@@ -1,23 +1,23 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { FaPlus } from "react-icons/fa";
+// import { useModal } from "../../context/Modal";
+// import { FaPlus } from "react-icons/fa";
 import ImageGrid from "./SelectedSpotImageDisplay/ImageGrid";
 import "./SelectedSpotImageDisplay/ImageGrid.css";
-import GoogleMaps from "../PropertyComponents/CreateNewProperty/FormInputComponents/NewPropertyComponent/AddressInputComponents/GoogleMaps";
-import SelectedSpotInfo from "./SelectedSpotInfo/SelectedSpotInfo";
-import ReviewsMainComponent from "./SelectedSpotReviews/ReviewsMainComponent";
-import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
-import AddReviewComponent from "./AddReviewComponents/AddReviewComponent";
+// import GoogleMaps from "../PropertyComponents/CreateNewProperty/FormInputComponents/NewPropertyComponent/AddressInputComponents/GoogleMaps";
+// import SelectedSpotInfo from "./SelectedSpotInfo/SelectedSpotInfo";
+// import ReviewsMainComponent from "./SelectedSpotReviews/ReviewsMainComponent";
+// import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+// import AddReviewComponent from "./AddReviewComponents/AddReviewComponent";
 
 function SelectedSpotsPage() {
   const { spotId } = useParams();
   const [spot, setSpot] = useState();
   const [spotImages, setSpotImages] = useState([]);
-  const [changed, setChanged] = useState(false);
+  // const [changed, setChanged] = useState(false);
 
-  const [review, setReview] = useState();
+  // const [review, setReview] = useState();
 
   const user = useSelector((state) => state.session.user);
 
@@ -29,7 +29,7 @@ function SelectedSpotsPage() {
       setSpotImages(data.SpotImages || []);
     };
     fetchSpot();
-  }, [spotId, user, review, changed]);
+  }, [spotId, user]);
 
   useEffect(() => {
     if (spotImages.length < 5) {
@@ -45,30 +45,32 @@ function SelectedSpotsPage() {
     }
   }, [spotImages]);
 
-  const closeMenu = useModal();
-  const center = useMemo(
-    () => (spot ? { lat: spot.lat, lng: spot.lng } : { lat: 0, lng: 0 }),
-    [spot]
-  );
+  // const closeMenu = useModal();
+
+  // const center = useMemo(
+  //   () => (spot ? { lat: spot.lat, lng: spot.lng } : { lat: 0, lng: 0 }),
+  //   [spot]
+  // );
+
   if (!spot) return null;
 
-  const userHasReview = spot.Reviews.some(
-    (review) => review.userId === user?.id
-  );
+  // const userHasReview = spot.Reviews.some(
+  //   (review) => review.userId === user?.id
+  // );
 
   return (
     <section className="selected-spot-body-container">
       <div className="image-track">
         <ImageGrid spotImages={spotImages} />
       </div>
-      <div className="spot-details-container">
+      {/* <div className="spot-details-container">
         <SelectedSpotInfo spot={spot} />
         <div className="google-map-container">
           <GoogleMaps lat={spot.lat} lng={spot.lng} center={center} />
         </div>
-        {/* <div className="reviews-container">
+        <div className="reviews-container">
           <ReviewsMainComponent spot={spot} setChanged={setChanged} />
-        </div> */}
+        </div>
       </div>
       <div className="add-review-button-container">
         {user && user.id !== spot.ownerId && !userHasReview ? (
@@ -83,7 +85,7 @@ function SelectedSpotsPage() {
             <FaPlus />
           </div>
         ) : null}
-      </div>
+      </div> */}
     </section>
   );
 }
