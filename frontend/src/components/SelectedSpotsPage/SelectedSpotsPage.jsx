@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { FaPlus } from "react-icons/fa";
 import ImageGrid from "./SelectedSpotImageDisplay/ImageGrid";
 import "./SelectedSpotImageDisplay/ImageGrid.css";
-// import GoogleMaps from "../PropertyComponents/CreateNewProperty/FormInputComponents/NewPropertyComponent/AddressInputComponents/GoogleMaps";
+import GoogleMaps from "../PropertyComponents/CreateNewProperty/FormInputComponents/NewPropertyComponent/AddressInputComponents/GoogleMaps";
 // import SelectedSpotInfo from "./SelectedSpotInfo/SelectedSpotInfo";
 import ReviewsMainComponent from "./SelectedSpotReviews/ReviewsMainComponent";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
@@ -46,10 +46,10 @@ function SelectedSpotsPage() {
   }, [spotImages]);
 
   const closeMenu = useModal();
-  // const center = useMemo(
-  //   () => (spot ? { lat: spot.lat, lng: spot.lng } : { lat: 0, lng: 0 }),
-  //   [spot]
-  // );
+  const center = useMemo(
+    () => (spot ? { lat: spot.lat, lng: spot.lng } : { lat: 0, lng: 0 }),
+    [spot]
+  );
   if (!spot) return null;
 
   const userHasReview = spot.Reviews.some(
@@ -63,9 +63,9 @@ function SelectedSpotsPage() {
       </div>
       <div className="spot-details-container">
         {/* <SelectedSpotInfo spot={spot} /> */}
-        {/* <div className="google-map-container">
+        <div className="google-map-container">
           <GoogleMaps lat={spot.lat} lng={spot.lng} center={center} />
-        </div> */}
+        </div>
         <div className="reviews-container">
           <ReviewsMainComponent spot={spot} setChanged={setChanged} />
         </div>
