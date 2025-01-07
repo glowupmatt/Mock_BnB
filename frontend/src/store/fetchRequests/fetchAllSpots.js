@@ -16,12 +16,12 @@ const fetchDataFailure = (error) => ({
   payload: error,
 });
 
-// export const fetchAllSpots = (pageNumber) => async (dispatch) => {
-export const fetchAllSpots = () => async (dispatch) => {
+export const fetchAllSpots = (pageNumber) => async (dispatch) => {
+  // export const fetchAllSpots = () => async (dispatch) => {
   dispatch(fetchDataRequest());
   try {
-    const spots = await fetch(`/api/spots/`);
-    // const spots = await fetch(`/api/spots?page=${pageNumber}&size=12`);
+    // const spots = await fetch(`/api/spots/`);
+    const spots = await fetch(`/api/spots?page=${pageNumber}&size=12`);
     const data = await spots.json();
     dispatch(fetchDataSuccess(data));
   } catch (error) {
