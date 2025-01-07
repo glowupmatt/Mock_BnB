@@ -1,42 +1,12 @@
 const config = require("./index");
 
-module.exports = {
-  development: {
-    storage: config.dbFile,
-    dialect: "sqlite",
-    seederStorage: "sequelize",
-    logQueryParameters: true,
-    typeValidation: true,
-  },
-  production: {
-    use_env_variable: "DATABASE_URL",
-    dialect: "postgres",
-    seederStorage: "sequelize",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
-    define: {
-      schema: process.env.SCHEMA,
-    },
-  },
-};
 // module.exports = {
 //   development: {
-//     use_env_variable: "DATABASE_URL",
-//     dialect: "postgres",
+//     storage: config.dbFile,
+//     dialect: "sqlite",
 //     seederStorage: "sequelize",
-//     dialectOptions: {
-//       ssl: {
-//         require: true,
-//         rejectUnauthorized: false,
-//       },
-//     },
-//     define: {
-//       schema: process.env.SCHEMA,
-//     },
+//     logQueryParameters: true,
+//     typeValidation: true,
 //   },
 //   production: {
 //     use_env_variable: "DATABASE_URL",
@@ -53,3 +23,33 @@ module.exports = {
 //     },
 //   },
 // };
+module.exports = {
+  development: {
+    use_env_variable: "DATABASE_URL",
+    dialect: "postgres",
+    seederStorage: "sequelize",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+    define: {
+      schema: process.env.SCHEMA,
+    },
+  },
+  production: {
+    use_env_variable: "DATABASE_URL",
+    dialect: "postgres",
+    seederStorage: "sequelize",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+    define: {
+      schema: process.env.SCHEMA,
+    },
+  },
+};

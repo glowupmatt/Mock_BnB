@@ -607,16 +607,16 @@ router.get("/", queryValidationRules, async (req, res) => {
     const spots = await Spot.findAll({
       where: test,
       attributes: {
-        include: [
-          [
-            sequelize.literal(`(
-              SELECT AVG("stars")
-              FROM "Reviews"
-              WHERE "Reviews"."spotId" = "Spot"."id"
-            )`),
-            "avgRating",
-          ],
-        ],
+        // include: [
+        //   [
+        //     sequelize.literal(`(
+        //       SELECT AVG("stars")
+        //       FROM "Reviews"
+        //       WHERE "Reviews"."spotId" = "Spot"."id"
+        //     )`),
+        //     "avgRating",
+        //   ],
+        // ],
       },
       ...pagination,
     });
