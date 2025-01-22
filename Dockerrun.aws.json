@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "your-docker-image",
+    "Name": "mock_bnb-backend",
     "Update": "true"
   },
   "Ports": [
