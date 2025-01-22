@@ -13,6 +13,6 @@ RUN npm run build
 
 WORKDIR /usr/src/app
 
-EXPOSE 8000
+EXPOSE 5432
 
 CMD ["npm", "start"]
