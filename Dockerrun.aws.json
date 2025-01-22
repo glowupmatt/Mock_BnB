@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "your-docker-image",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "8000"
+    }
+  ],
+  "Volumes": [],
+  "Logging": "/var/log/nginx",
+  "Environment": [
+    {
+      "Name": "NODE_ENV",
+      "Value": "production"
+    },
+    {
+      "Name": "DATABASE_URL",
+      "Value": "your-database-url"
+    },
+    {
+      "Name": "JWT_SECRET",
+      "Value": "your-jwt-secret"
+    },
+    {
+      "Name": "JWT_EXPIRES_IN",
+      "Value": "your-jwt-expires-in"
+    },
+    {
+      "Name": "SCHEMA",
+      "Value": "your-schema"
+    }
+  ]
+}
